@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genotype Compatibility Checker</title>
+
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            background: #fafafa;
+            align-items: center;
+            height: 100vh;
+        }
+
+        div {
+            background: #062A39;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            color: #FAFAFA;
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #00B4D5;
+            border-radius: 6px;
+            font-size: 15px;
+            background-color: #FAFAFA;
+            color: #333;
+        }
+
+        h3 {
+            margin: 15px 0 5px;
+        }
+
+        button {
+            background-color: #00B4D5;
+            color: #062A39;
+            border: none;
+            padding: 14px 20px;
+            margin-top: 15px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 80%;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h2>Enter your genotypes to know if you and your partner are compatible</h2>
+
+        <h3>Man Genotype:</h3>
+        <input type="text" placeholder="e.g. AA, AS, SS" id="man">
+
+        <h3>Woman Genotype:</h3>
+        <input type="text" placeholder="e.g. AA, AS, SS" id="woman">
+
+        <button onclick="calculate()">Calculate</button>
+
+        <h1 id="message"></h1>
+    </div>
+
+    <script>
+        function calculate() {
+            const manValue = document.getElementById('man').value.toUpperCase();
+            const womanValue = document.getElementById('woman').value.toUpperCase();
+            const message = document.getElementById('message');
+
+
+            if (
+                (manValue !== "AA" && manValue !== "AS" && manValue !== "SS" && manValue !== "AC") ||
+                (womanValue !== "AA" && womanValue !== "AS" && womanValue !== "SS" && womanValue !== "AC")
+            ) {
+                message.textContent = "Please enter valid genotypes (AA, AS, SS, or AC).";
+                return;
+            }
+
+
+            if (manValue === "AA" || womanValue === "AA") {
+                message.textContent = "You both are Compatible";
+            } else {
+                message.textContent = "You both are Not Compatible";
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .text-red {
+            color: red;
+        }
+
+
+    </style>
+</head>
+
+<div id="answer"></div>
+
+
+<body>
+
+
+
+    <script>
+        const display = document.getElementById('answer')
+
+        function evaluate(x) {
+            const result = 2 * (x ** 2)
+            return result;
+        }
+
+        display.innerHTML = "<h1 class='text-red'> The result of 2x^2 when x=3 is: " + evaluate(3) + " </h1 > ";
+    </script>
+</body>
+
+</html>

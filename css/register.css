@@ -41,7 +41,7 @@
   transform: scale(1.1);
 }
 
-.form-floating>label {
+.form-floating label {
   color: #666;
 }
 
