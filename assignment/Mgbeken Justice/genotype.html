@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genotype Compatibility</title>
+    <link rel="stylesheet" href="genotype.css">
+</head>
+<body>
+    <h1>Genotype Compatibility</h1>
+
+    <div class="input-section">
+        <label>Your Genotype:</label>
+        <select id="genotype1">
+            <option value="">Select...</option>
+            <option value="AA">AA - Normal</option>
+            <option value="AS">AS - Carrier</option>
+            <option value="SS">SS - Sickle Cell</option>
+        </select>
+
+        <label>Partner's Genotype:</label>
+        <select id="genotype2">
+            <option value="">Select...</option>
+            <option value="AA">AA - Normal</option>
+            <option value="AS">AS - Carrier</option>
+            <option value="SS">SS - Sickle Cell</option>
+        </select>
+    </div>
+
+    <div id="result"></div>
+
+    <script>
+        const compatibility = {
+            "AA-AA": { status: "SAFE", },
+            "AA-AS": { status: "SAFE", },
+            "AA-SS": { status: "RISK", },
+            "AS-AA": { status: "SAFE", },
+            "AS-AS": { status: "RISK", },
+            "AS-SS": { status: "UNSAFE", },
+            "SS-AA": { status: "RISK", },
+            "SS-AS": { status: "UNSAFE", },
+            "SS-SS": { status: "UNSAFE", }
+        };
+
+        const gen1 = document.getElementById("genotype1");
+        const gen2 = document.getElementById("genotype2");
+        const result = document.getElementById("result");
+
+        function check() {
+            if (!gen1.value || !gen2.value) {
+                result.innerHTML = "";
+                return;
+            }
+            
+            const key = gen1.value + "-" + gen2.value;
+            const data = compatibility[key];
+            const statusClass = data.status.toLowerCase();
+            
+            result.innerHTML = `<div class="result ${statusClass}">${data.status}</div>`;
+        }
+
+        gen1.addEventListener("change", check);
+        gen2.addEventListener("change", check);
+    </script>
+</body>
+</html>

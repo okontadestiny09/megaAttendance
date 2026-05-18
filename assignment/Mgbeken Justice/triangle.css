@@ -1,0 +1,40 @@
+.triangle-wrap {
+      position: relative;
+      width: 350px;
+      height: 300px;
+    }
+    .side-left {
+      position: absolute;
+      left: 80px;
+      top: 20px;
+      width: 3px;
+      height: 200px;
+      background: black;
+    }
+    .side-bottom {
+      position: absolute;
+      left: 80px;
+      top: 219px;
+      width: 200px;
+      height: 3px;
+      background: black;
+    }
+    .label-left {
+      position: absolute;
+      left: 0px;
+      top: 95px;
+      text-align: center;
+    }
+    .label-bottom {
+      position: absolute;
+      left: 135px;
+      top: 235px;
+      text-align: center;
+    }
+    .label-hyp {
+      position: absolute;
+      left: 185px;
+      top: 65px;
+      transform: rotate(45deg);
+      text-align: center;
+    }

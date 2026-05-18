@@ -1,0 +1,45 @@
+
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .input-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px 0;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        .safe { background-color: #d4edda; color: #155724; }
+        .risk { background-color: #fff3cd; color: #856404; }
+        .unsafe { background-color: #f8d7da; color: #721c24; }

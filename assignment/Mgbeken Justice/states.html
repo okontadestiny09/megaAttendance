@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nigeria States</title>
+</head>
+<body>
+    <script>
+        const states = {
+            Abia: {
+                capital: "Umuahia",
+                governor: "Alex Otti",
+                mineralResources: ["Oil", "Gas", "Limestone"]
+            },
+            Adamawa: {
+                capital: "Yola",
+                governor: "Ahmadu Umaru Fintiri",
+                mineralResources: ["Gypsum", "Kaolin", "Bentonite"]
+            },
+            AkwaIbom: {
+                capital: "Uyo",
+                governor: "Umo Eno",
+                mineralResources: ["Oil", "Gas", "Salt"]
+            },
+            Anambra: {
+                capital: "Awka",
+                governor: "Charles Soludo",
+                mineralResources: ["Coal", "Clay", "Glass Sand"]
+            },
+            Bauchi: {
+                capital: "Bauchi",
+                governor: "Bala Mohammed",
+                mineralResources: ["Tin", "Limestone", "Gypsum"]
+            },
+            Bayelsa: {
+                capital: "Yenagoa",
+                governor: "Douye Diri",
+                mineralResources: ["Oil", "Gas", "Clay"]
+            },
+            Benue: {
+                capital: "Makurdi",
+                governor: "Hyacinth Alia",
+                mineralResources: ["Limestone", "Coal", "Lead"]
+            },
+            Borno: {
+                capital: "Maiduguri",
+                governor: "Babagana Zulum",
+                mineralResources: ["Clay", "Kaolin", "Limestone"]
+            },
+            CrossRiver: {
+                capital: "Calabar",
+                governor: "Bassey Otu",
+                mineralResources: ["Salt", "Limestone", "Barite"]
+            },
+            Delta: {
+                capital: "Asaba",
+                governor: "Sheriff Oborevwori",
+                mineralResources: ["Oil", "Gas", "Clay"]
+            },
+            Ebonyi: {
+                capital: "Abakaliki",
+                governor: "Francis Nwifuru",
+                mineralResources: ["Lead", "Zinc", "Salt"]
+            },
+            Edo: {
+                capital: "Benin City",
+                governor: "Monday Okpebholo",
+                mineralResources: ["Gold", "Marble", "Clay"]
+            },
+            Ekiti: {
+                capital: "Ado Ekiti",
+                governor: "Biodun Oyebanji",
+                mineralResources: ["Granite", "Kaolin", "Clay"]
+            },
+            Enugu: {
+                capital: "Enugu",
+                governor: "Peter Mbah",
+                mineralResources: ["Coal", "Iron Ore", "Limestone"]
+            },
+            Gombe: {
+                capital: "Gombe",
+                governor: "Muhammad Inuwa Yahaya",
+                mineralResources: ["Coal", "Gypsum", "Limestone"]
+            },
+            Imo: {
+                capital: "Owerri",
+                governor: "Hope Uzodimma",
+                mineralResources: ["Oil", "Gas", "Lead"]
+            },
+            Jigawa: {
+                capital: "Dutse",
+                governor: "Umar Namadi",
+                mineralResources: ["Granite", "Kaolin", "Laterite"]
+            },
+            Kaduna: {
+                capital: "Kaduna",
+                governor: "Uba Sani",
+                mineralResources: ["Gold", "Marble", "Tin"]
+            },
+            Kano: {
+                capital: "Kano",
+                governor: "Abba Kabir Yusuf",
+                mineralResources: ["Tin", "Granite", "Kaolin"]
+            },
+            Katsina: {
+                capital: "Katsina",
+                governor: "Dikko Radda",
+                mineralResources: ["Marble", "Salt", "Kaolin"]
+            },
+            Kebbi: {
+                capital: "Birnin Kebbi",
+                governor: "Nasir Idris",
+                mineralResources: ["Gold", "Clay", "Limestone"]
+            },
+            Kogi: {
+                capital: "Lokoja",
+                governor: "Usman Ododo",
+                mineralResources: ["Iron Ore", "Coal", "Gold"]
+            },
+            Kwara: {
+                capital: "Ilorin",
+                governor: "AbdulRahman AbdulRazaq",
+                mineralResources: ["Marble", "Gold", "Tantalite"]
+            },
+            Lagos: {
+                capital: "Ikeja",
+                governor: "Babajide Sanwo-Olu",
+                mineralResources: ["Bitumen", "Clay", "Glass Sand"]
+            },
+            Nasarawa: {
+                capital: "Lafia",
+                governor: "Abdullahi Sule",
+                mineralResources: ["Gold", "Barite", "Tin"]
+            },
+            Niger: {
+                capital: "Minna",
+                governor: "Mohammed Umar Bago",
+                mineralResources: ["Gold", "Talc", "Granite"]
+            },
+            Ogun: {
+                capital: "Abeokuta",
+                governor: "Dapo Abiodun",
+                mineralResources: ["Limestone", "Phosphate", "Clay"]
+            },
+            Ondo: {
+                capital: "Akure",
+                governor: "Lucky Aiyedatiwa",
+                mineralResources: ["Bitumen", "Oil", "Glass Sand"]
+            },
+            Osun: {
+                capital: "Osogbo",
+                governor: "Ademola Adeleke",
+                mineralResources: ["Gold", "Granite", "Talc"]
+            },
+            Oyo: {
+                capital: "Ibadan",
+                governor: "Seyi Makinde",
+                mineralResources: ["Marble", "Gold", "Clay"]
+            },
+            Plateau: {
+                capital: "Jos",
+                governor: "Caleb Mutfwang",
+                mineralResources: ["Tin", "Columbite", "Lead"]
+            },
+            Rivers: {
+                capital: "Port Harcourt",
+                governor: "Siminalayi Fubara",
+                mineralResources: ["Oil", "Gas", "Silica Sand"]
+            },
+            Sokoto: {
+                capital: "Sokoto",
+                governor: "Ahmad Aliyu",
+                mineralResources: ["Phosphate", "Clay", "Limestone"]
+            },
+            Taraba: {
+                capital: "Jalingo",
+                governor: "Agbu Kefas",
+                mineralResources: ["Barite", "Lead", "Zinc"]
+            },
+            Yobe: {
+                capital: "Damaturu",
+                governor: "Mai Mala Buni",
+                mineralResources: ["Gypsum", "Kaolin", "Limestone"]
+            },
+            Zamfara: {
+                capital: "Gusau",
+                governor: "Dauda Lawal",
+                mineralResources: ["Gold", "Copper", "Iron Ore"]
+            },
+            FCT: {
+                capital: "Abuja",
+                governor: "Minister Administered",
+                mineralResources: ["Granite", "Marble", "Clay"]
+            }
+        };
+
+        const stateList = Object.entries(states).map(([stateName, info]) => {
+            return `${stateName} — Capital: ${info.capital}, Governor: ${info.governor}, Minerals: ${info.mineralResources.join(", ")}`;
+        });
+
+        console.log(stateList);
+    </script>
+</body>
+</html>
