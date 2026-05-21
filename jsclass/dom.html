@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/bootstrap/bootstrap.css">
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            border: 1px solid green;
+        }
+
+        #circle {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            border: 1px solid green;
+            border-radius: 50%;
+        }
+
+        .sender {
+            color: white;
+            background-color: green;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <button id="sidebar-button">MENU</button>
+        <div class="row">
+            <div class="col-sm-12 col-md-2 d-none" id="sidebar">
+                <h1>Sidebar</h1>
+            </div>
+            <div class="col-sm-12 col-md-10">
+                <div id="content" class="border" style="min-height: 200px;">
+                </div>
+                <input type="text" id="message">
+                <button id="send">SEND</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        // const sidebarButton = document.querySelector('#sidebar-button')
+        // const sidebar = document.querySelector('#sidebar')
+
+        // sidebarButton.addEventListener('click', handleMyAction)
+
+        // function handleMyAction() {
+        //     sidebar.classList.toggle('d-none')
+
+        // }
+
+        // Declared elements for use.
+        const send = document.querySelector('#send');
+        const contentArea = document.querySelector('#content')
+
+        // Added an event listener to the send button
+        send.addEventListener('click', () => {
+            // Get the user entered msg input tag.
+            const messageText = document.querySelector('#message');
+
+            // Created an element in vdom.
+            const msg = document.createElement('p');
+            // We added a class to the vdom element we just created
+            msg.classList.add('sender')
+            // Set the value of the vdom created to the msg text in the input tag
+            msg.textContent = messageText.value;
+            // Appended the child element from the vdom to the dom
+            contentArea.appendChild(msg);
+            // Reset the input
+            messageText.value = ""
+        })
+
+
+    </script>
+</body>
+
+</html>

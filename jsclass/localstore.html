@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <p id="message"></p>
+    <p id="display"></p>
+    <input type="text" id="word">
+    <button id="add">ADD</button>
+
+
+    <script>
+        const message = document.querySelector('#message');
+        const add = document.querySelector('#add');
+        const display = document.querySelector('#display')
+        display.textContent = localStorage.getItem('latest-word')
+
+        function checkStore() {
+            const data = localStorage.getItem('posts');
+
+            return JSON.parse(data).length;
+        }
+        message.textContent = checkStore();
+
+        add.addEventListener('click', () => {
+            const word = document.querySelector('#word');
+            localStorage.setItem('latest-word', word.value)
+            display.textContent = localStorage.getItem('latest-word')
+
+
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <h1 id="quote"></h1>
+    <h4 id="author"></h4>
+
+
+    <script>
+        const quote = document.querySelector('#quote')
+        const author = document.querySelector('#author')
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        fetch("https://dummyjson.com/quotes").then((response) => response.json())
+            .then(data => {
+                setInterval(() => {
+                    const id = getRandomInt(1, 29);
+                    quote.textContent = data.quotes[id].quote;
+                    author.textContent = data.quotes[id].author;
+                }, 5000);
+                // console.log(data);
+
+            });
+
+    </script>
+</body>
+
+</html>
