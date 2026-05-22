@@ -1,0 +1,240 @@
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            overflow: hidden;
+        }
+
+        #container {
+            width: 100%;
+        }
+
+        #map {
+            background-image: url("../images/Download\ Doodle\ Map\ of\ Nigeria\ With\ States\ for\ free\ \(1\).jpg");
+            width: 700px;
+            height: 700px;
+            background-size: cover;
+            margin: auto 0px;
+            font-size: 12px;
+        }
+        .inline {
+            display: inline-block;
+        }
+        #charts {
+            width: 48%;
+            height: 700px;
+            margin: auto 0px;
+            font-size: 12px;            position: absolute;
+            padding: 20px 10px;        }
+
+        #map a {
+            text-decoration: none;
+            color: black;
+        }
+
+        #sokoto {
+            position: absolute;
+            margin: 150px 0px 0px 190px;
+        }
+
+        #zamfara {
+            position: absolute;
+            margin: 210px 0px 0px 219px;
+        }
+
+        #katsina {
+            position: absolute;
+            margin: 180px 0px 0px 287px;
+        }
+
+        #kano {
+            position: absolute;
+            margin: 220px 0px 0px 330px;
+        }
+
+        #jigawa {
+            position: absolute;
+            margin: 200px 0px 0px 375px;
+        }
+
+        #yobe {
+            position: absolute;
+            margin: 200px 0px 0px 465px;
+        }
+
+        #borno {
+            position: absolute;
+            margin: 200px 0px 0px 538px;
+        }
+
+        #kebbi {
+            position: absolute;
+            margin: 200px 0px 0px 138px;
+        }
+
+        #niger {
+            position: absolute;
+            margin: 310px 0px 0px 210px;
+        }
+
+        #kaduna {
+            position: absolute;
+            margin: 289px 0px 0px 299px;
+        }
+
+        #bauchi {
+            position: absolute;
+            margin: 280px 0px 0px 380px;
+        }
+
+        #gombe {
+            position: absolute;
+            margin: 280px 0px 0px 445px;
+        }
+
+        #adamawa {
+            position: absolute;
+            margin: 320px 0px 0px 491px;
+        }
+
+        #kwara {
+            position: absolute;
+            margin: 350px 0px 0px 165px;
+        }
+
+        #abuja {
+            position: absolute;
+            margin: 350px 0px 0px 270px;
+        }
+
+        #plateau {
+            position: absolute;
+            margin: 340px 0px 0px 378px;
+        }
+
+        #taraba {
+            position: absolute;
+            margin: 390px 0px 0px 420px;
+        }
+
+        #oyo {
+            position: absolute;
+            margin: 385px 0px 0px 120px;
+        }
+
+        #osun {
+            position: absolute;
+            margin: 410px 0px 0px 158px;
+        }
+
+        #ekiti {
+            position: absolute;
+            margin: 406px 0px 0px 190px;
+        }
+
+        #ondo {
+            position: absolute;
+            margin: 433px 0px 0px 188px;
+        }
+
+        #edo {
+            position: absolute;
+            margin: 454px 0px 0px 220px;
+        }
+
+        #kogi {
+            position: absolute;
+            margin: 410px 0px 0px 260px;
+        }
+
+        #nasarawa {
+            position: absolute;
+            margin: 366px 0px 0px 306px;
+        }
+
+        #benue {
+            position: absolute;
+            margin: 420px 0px 0px 339px;
+        }
+
+        #delta {
+            position: absolute;
+            margin: 500px 0px 0px 220px;
+        }
+
+        #bayelsa {
+            position: absolute;
+            margin: 530px 0px 0px 213px;
+        }
+
+        #rivers {
+            position: absolute;
+            margin: 525px 0px 0px 254px;
+        }
+
+        #anambra {
+            position: absolute;
+            margin: 469px 0px 0px 270px;
+        }
+
+        #enugu {
+            position: absolute;
+            margin: 460px 0px 0px 290px;
+        }
+
+        #ebonyi {
+            position: absolute;
+            margin: 465px 0px 0px 320px;
+        }
+
+        #cross-river {
+            position: absolute;
+            margin: 490px 0px 0px 327px;
+        }
+
+        #imo {
+            position: absolute;
+            margin: 500px 0px 0px 270px;
+        }
+
+        #akwaibom {
+            position: absolute;
+            margin: 520px 0px 0px 300px;
+        }
+
+        #abia {
+            position: absolute;
+            margin: 497px 0px 0px 298px;
+        }
+
+        #xtra-info {
+            position: absolute;
+            margin: 300px 0px 0px 590px;
+            background-color: rgb(248, 222, 174);
+            color: blue;
+            font-size: 16px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        #box {
+            width: 90%;
+            border: 1px solid black;
+            height: 500px;
+            margin: auto;
+            padding: 10px;
+            font-size: 14px;
+            overflow-y: scroll;
+        }
+        .bar span {
+            color: yellow;
+            background-color: blue;
+        }
+        .bar {
+            background-color: blue;
+            padding: 10px;
+            color: white;
+            margin-bottom: 5px;
+        }
