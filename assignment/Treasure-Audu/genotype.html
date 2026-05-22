@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treasure's Genotype Calculator</title>
+    <style>
+
+.container {
+    width: 350px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 6px rgba(0,0,0,0.2);
+}
+
+h1 {
+    text-align: center;
+    font-size: 22px;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+}
+
+button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    background: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: darkblue;
+}
+
+.result {
+    margin-top: 20px;
+    padding: 12px;
+    background: #e7f0ff;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+}
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Genotype Calculator</h1>
+
+        <label>Father Genotype:</label>
+        <select id="father">
+            <option value="">Select</option>
+            <option value="AA">AA</option>
+            <option value="AS">AS</option>
+            <option value="SS">SS</option>
+        </select>
+
+        <label>Mother Genotype:</label>
+        <select id="mother">
+            <option value="">Select</option>
+            <option value="AA">AA</option>
+            <option value="AS">AS</option>
+            <option value="SS">SS</option>
+        </select>
+
+        <button onclick="checkGenotype()">Check Result</button>
+
+        <div class="result" id="result">
+            Result will show here...
+        </div>
+    </div>
+
+
+    <script>
+        function checkGenotype() {
+            let father = document.getElementById("father").value;
+            let mother = document.getElementById("mother").value;
+            let result = document.getElementById("result");
+
+            if (father === "" || mother === "") {
+                result.innerHTML = "Please select both father and mother genotype.";
+            }
+
+            else if (father === "AA" && mother === "AA") {
+                result.innerHTML = "Child Genotype: 100% AA";
+            }
+
+            else if ((father === "AA" && mother === "AS") || (father === "AS" && mother === "AA")) {
+                result.innerHTML = "Child Genotype: 50% AA, 50% AS";
+            }
+
+            else if ((father === "AA" && mother === "SS") || (father === "SS" && mother === "AA")) {
+                result.innerHTML = "Child Genotype: 100% AS";
+            }
+
+            else if (father === "AS" && mother === "AS") {
+                result.innerHTML = "Child Genotype: 25% AA, 50% AS, 25% SS";
+            }
+
+            else if ((father === "AS" && mother === "SS") || (father === "SS" && mother === "AS")) {
+                result.innerHTML = "Child Genotype: 50% AS, 50% SS";
+            }
+
+            else if (father === "SS" && mother === "SS") {
+                result.innerHTML = "Child Genotype: 100% SS";
+            }
+        }
+    </script>
+
+</body>
+</html>

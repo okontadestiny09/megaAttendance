@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>States in Nigeria </title>
+
+</head>
+
+<body>
+
+    <header>
+        <h1>Federal Republic of Nigeria</h1>
+        <p class="subtitle">36 States and the Federal Capital Territory</p>
+
+        <div id="datas"></div>
+    </header>
+
+    </div>
+
+    <script>
+        const statesData = [
+            {
+                name: "Abia",
+                slogan: "God's Own State",
+                governor: "Alex Otti",
+                population: "4.1M",
+                size: "6,320 km²",
+                minerals: ["Oil", "Gas", "Limestone", "Lead"]
+            },
+            {
+                name: "Adamawa",
+                slogan: "Land of Beauty",
+                governor: "Ahmadu Fintiri",
+                population: "4.2M",
+                size: "36,917 km²",
+                minerals: ["Gypsum", "Magnesite", "Kaolin"]
+            },
+            {
+                name: "Akwa Ibom",
+                slogan: "Land of Promise",
+                governor: "Umo Eno",
+                population: "5.4M",
+                size: "7,081 km²",
+                minerals: ["Oil", "Gas", "Clay", "Limestone"]
+            },
+            {
+                name: "Anambra",
+                slogan: "Light of the Nation",
+                governor: "Charles Soludo",
+                population: "5.5M",
+                size: "4,844 km²",
+                minerals: ["Gas", "Ceramic", "Bauxite"]
+            },
+            {
+                name: "Bauchi",
+                slogan: "Pearl of Tourism",
+                governor: "Bala Mohammed",
+                population: "6.5M",
+                size: "45,893 km²",
+                minerals: ["Gold", "Cassiterite", "Iron Ore"]
+            },
+            {
+                name: "Bayelsa",
+                slogan: "Glory of All Lands",
+                governor: "Douye Diri",
+                population: "2.2M",
+                size: "10,773 km²",
+                minerals: ["Oil", "Gas", "Clay", "Gypsum"]
+            },
+            {
+                name: "Benue",
+                slogan: "Food Basket of the Nation",
+                governor: "Hyacinth Alia",
+                population: "5.7M",
+                size: "34,059 km²",
+                minerals: ["Limestone", "Barite", "Coal"]
+            },
+            {
+                name: "Borno",
+                slogan: "Home of Peace",
+                governor: "Babagana Zulum",
+                population: "5.8M",
+                size: "70,898 km²",
+                minerals: ["Diatomite", "Clay", "Salt"]
+            },
+            {
+                name: "Cross River",
+                slogan: "The People's Paradise",
+                governor: "Bassey Otu",
+                population: "3.8M",
+                size: "20,156 km²",
+                minerals: ["Limestone", "Barite", "Lead"]
+            },
+            {
+                name: "Delta",
+                slogan: "The Big Heart",
+                governor: "Sheriff Oborevwori",
+                population: "5.6M",
+                size: "17,698 km²",
+                minerals: ["Oil", "Gas", "Silica Sand"]
+            },
+            {
+                name: "Ebonyi",
+                slogan: "Salt of the Nation",
+                governor: "Francis Nwifuru",
+                population: "3.0M",
+                size: "5,670 km²",
+                minerals: ["Lead", "Zinc", "Salt"]
+            },
+            {
+                name: "Edo",
+                slogan: "Heartbeat of the Nation",
+                governor: "Monday Okpebholo",
+                population: "4.2M",
+                size: "17,802 km²",
+                minerals: ["Oil", "Gas", "Limestone"]
+            },
+            {
+                name: "Ekiti",
+                slogan: "Land of Honour",
+                governor: "Biodun Oyebanji",
+                population: "3.2M",
+                size: "6,353 km²",
+                minerals: ["Kaolin", "Granite", "Feldspar"]
+            },
+            {
+                name: "Enugu",
+                slogan: "Coal City State",
+                governor: "Peter Mbah",
+                population: "4.4M",
+                size: "7,161 km²",
+                minerals: ["Coal", "Limestone", "Iron Ore"]
+            },
+            {
+                name: "Gombe",
+                slogan: "Jewel in the Savannah",
+                governor: "Inuwa Yahaya",
+                population: "3.2M",
+                size: "18,768 km²",
+                minerals: ["Gypsum", "Coal", "Limestone"]
+            },
+            {
+                name: "Imo",
+                slogan: "Eastern Heartland",
+                governor: "Hope Uzodinma",
+                population: "5.4M",
+                size: "5,530 km²",
+                minerals: ["Oil", "Gas", "Limestone"]
+            },
+            {
+                name: "Jigawa",
+                slogan: "A World Apart",
+                governor: "Umar Namadi",
+                population: "5.8M",
+                size: "23,154 km²",
+                minerals: ["Kaolin", "Tourmaline", "Iron Ore"]
+            },
+            {
+                name: "Kaduna",
+                slogan: "Centre of Learning",
+                governor: "Uba Sani",
+                population: "8.2M",
+                size: "46,053 km²",
+                minerals: ["Gold", "Graphite", "Kyanite"]
+            },
+            {
+                name: "Kano",
+                slogan: "Centre of Commerce",
+                governor: "Abba Kabir Yusuf",
+                population: "15.0M",
+                size: "20,131 km²",
+                minerals: ["Glass Sand", "Pyrochlore"]
+            },
+            {
+                name: "Katsina",
+                slogan: "Home of Hospitality",
+                governor: "Dikko Radda",
+                population: "7.8M",
+                size: "24,192 km²",
+                minerals: ["Kaolin", "Marble", "Salt"]
+            },
+            {
+                name: "Kebbi",
+                slogan: "Land of Equity",
+                governor: "Nasir Idris",
+                population: "4.4M",
+                size: "36,800 km²",
+                minerals: ["Gold", "Clay", "Quartz"]
+            },
+            {
+                name: "Kogi",
+                slogan: "The Confluence State",
+                governor: "Ahmed Usman Ododo",
+                population: "4.4M",
+                size: "29,833 km²",
+                minerals: ["Iron Ore", "Coal", "Marble"]
+            },
+            {
+                name: "Kwara",
+                slogan: "State of Harmony",
+                governor: "AbdulRahman AbdulRazaq",
+                population: "3.1M",
+                size: "36,825 km²",
+                minerals: ["Gold", "Marble", "Feldspar"]
+            },
+            {
+                name: "Lagos",
+                slogan: "Centre of Excellence",
+                governor: "Babajide Sanwo-Olu",
+                population: "17.5M",
+                size: "3,577 km²",
+                minerals: ["Oil", "Gas", "Clay"]
+            },
+            {
+                name: "Nasarawa",
+                slogan: "Home of Solid Minerals",
+                governor: "Abdullahi Sule",
+                population: "2.5M",
+                size: "27,117 km²",
+                minerals: ["Tin", "Barite", "Coal"]
+            },
+            {
+                name: "Niger",
+                slogan: "The Power State",
+                governor: "Mohammed Umar Bago",
+                population: "5.5M",
+                size: "76,363 km²",
+                minerals: ["Gold", "Talc", "Iron Ore"]
+            },
+            {
+                name: "Ogun",
+                slogan: "Gateway State",
+                governor: "Dapo Abiodun",
+                population: "5.2M",
+                size: "16,762 km²",
+                minerals: ["Limestone", "Bitumen", "Kaolin"]
+            },
+            {
+                name: "Ondo",
+                slogan: "Sunshine State",
+                governor: "Lucky Aiyedatiwa",
+                population: "4.6M",
+                size: "15,500 km²",
+                minerals: ["Bitumen", "Oil", "Gas"]
+            },
+            {
+                name: "Osun",
+                slogan: "Land of Virtue",
+                governor: "Ademola Adeleke",
+                population: "4.7M",
+                size: "9,251 km²",
+                minerals: ["Gold", "Granite", "Talc"]
+            },
+            {
+                name: "Oyo",
+                slogan: "Pacesetter State",
+                governor: "Seyi Makinde",
+                population: "7.8M",
+                size: "28,454 km²",
+                minerals: ["Marble", "Aquamarine", "Gold"]
+            },
+            {
+                name: "Plateau",
+                slogan: "Home of Peace & Tourism",
+                governor: "Caleb Mutfwang",
+                population: "4.2M",
+                size: "30,913 km²",
+                minerals: ["Tin", "Columbite", "Barite"]
+            },
+            {
+                name: "Rivers",
+                slogan: "Treasure Base of the Nation",
+                governor: "Siminalayi Fubara",
+                population: "7.3M",
+                size: "11,077 km²",
+                minerals: ["Oil", "Gas", "Silica Sand"]
+            },
+            {
+                name: "Sokoto",
+                slogan: "Seat of the Caliphate",
+                governor: "Ahmed Aliyu",
+                population: "4.9M",
+                size: "25,973 km²",
+                minerals: ["Phosphate", "Limestone", "Clay"]
+            },
+            {
+                name: "Taraba",
+                slogan: "Nature's Gift to the Nation",
+                governor: "Agbu Kefas",
+                population: "3.0M",
+                size: "54,473 km²",
+                minerals: ["Barite", "Lead", "Zinc"]
+            },
+            {
+                name: "Yobe",
+                slogan: "Pride of the Sahel",
+                governor: "Mai Mala Buni",
+                population: "3.2M",
+                size: "45,502 km²",
+                minerals: ["Gypsum", "Kaolin", "Quartz"]
+            },
+            {
+                name: "Zamfara",
+                slogan: "Farming is Our Pride",
+                governor: "Dauda Lawal",
+                population: "4.5M",
+                size: "39,762 km²",
+                minerals: ["Gold", "Iron Ore", "Granite"]
+            },
+            {
+                name: "FCT",
+                slogan: "Centre of Unity",
+                governor: "Nyesom Wike (Minister)",
+                population: "3.5M",
+                size: "7,315 km²",
+                minerals: ["Marble", "Clay", "Tin"]
+            }
+        ];
+
+
+
+        statesData.map((state) => {
+            const data = document.getElementById('datas')
+
+            data.innerHTML += `
+            <div>
+                <h2>${state.name}</h2>
+                <p><strong>Capital:</strong> ${state.slogan}</p> 
+                <p><strong>Zone:</strong> ${state.governor}</p>
+                <p><strong>Population:</strong> ${state.population}</p>
+                <p><strong>Size:</strong> ${state.size}</p>
+                <p><strong>Resources:</strong> ${state.minerals.join()}</p>
+            </div >`
+            return
+        }
+        )
+
+    </script>
+</body>
+
+</html>

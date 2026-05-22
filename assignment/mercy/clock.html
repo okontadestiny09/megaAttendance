@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: pink;
+        }
+
+        .clock {
+            display: flex;
+            gap: 1rem;
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        .box {
+            color: white;
+            border: 2px solid white;
+            padding: 1rem;
+            text-align: center;
+            width: 100px;
+        }
+
+        .box h1 {
+            font-size: 3rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="clock">
+
+        <div class="box">
+            <p>Hours</p>
+            <h1 id="hours">0</h1>
+        </div>
+
+        <div class="box">
+            <p>Minutes</p>
+            <h1 id="minutes">0</h1>
+        </div>
+
+        <div class="box">
+            <p>Seconds</p>
+            <h1 id="seconds">0</h1>
+        </div>
+
+    </div>
+
+    <script>
+
+        const hours = document.getElementById("hours");
+        const minutes = document.getElementById("minutes");
+        const seconds = document.getElementById("seconds");
+
+        let h = 0;
+        let m = 0;
+        let s = 0;
+
+        function clockTime() {
+
+            s++;
+
+            if (s >= 60) {
+                s = 0;
+                m++;
+            }
+
+            if (m >= 60) {
+                m = 0;
+                h++;
+            }
+
+            if (h >= 24) {
+                h = 0;
+            }
+
+            seconds.textContent = s;
+            minutes.textContent = m;
+            hours.textContent = h;
+
+        }
+
+        setInterval(clockTime, 1000);
+
+    </script>
+
+</body>
+
+</html>

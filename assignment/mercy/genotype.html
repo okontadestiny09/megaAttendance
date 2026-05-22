@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Genotype Matcher</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            width: 300px;
+            border-radius: 10px;
+
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+
+
+        button {
+            background-color: rgb(69, 64, 65);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+
+
+        #result {
+            margin-top: 20px;
+            color: #222;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>Genotype Matcher</h2>
+
+        <input type="text" id="first" placeholder="Male Genotype">
+
+        <input type="text" id="second" placeholder="Female Genotype">
+
+        <button onclick="checkMatch()">Check</button>
+
+        <h3 id="result"></h3>
+
+    </div>
+
+    <script>
+
+        function checkMatch() {
+
+            let first = document.getElementById("first").value.toUpperCase();
+            let second = document.getElementById("second").value.toUpperCase();
+
+            let result = "";
+
+
+            
+            if (
+                (first === "AS" && second === "AS") ||
+                (first === "AS" && second === "SS") ||
+                (first === "SS" && second === "AS") ||
+                (first === "SS" && second === "SS")
+            ) {
+
+                result = "Not Compatible and cannot marry";
+
+            } else {
+
+                result = "Compatible and can marry";
+
+            }
+
+            document.getElementById("result").innerHTML = result;
+        }
+
+    </script>
+
+</body>
+
+</html>
