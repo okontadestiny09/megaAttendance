@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Caculator Ui</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            user-select: none;
+        }
+
+        body {
+            background-color: #121212;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .calculator {
+            width: 320px;
+            background-color: #202020;
+            border: 1px solid #2d2d2d;
+            border-radius: 8px;
+            padding: 6px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #ffffff;
+            padding: 8px 4px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .menu-btn {
+            font-size: 16px;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .menu-btn:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 14px;
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 4px;
+        }
+
+        .icon-btn:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .display {
+            padding: 20px 8px;
+            text-align: right;
+            color: #ffffff;
+            font-size: 46px;
+            font-weight: 600;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .memory-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 4px 8px 4px;
+        }
+
+        .mem-btn {
+            background: none;
+            border: none;
+            color: #a0a0a0;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 6px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .mem-btn:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+        }
+
+        .mem-disabled {
+            color: #555555;
+            cursor: default;
+        }
+
+        .mem-disabled:hover {
+            background: none;
+            color: #555555;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+        }
+
+        .btn {
+            border: none;
+            height: 46px;
+            border-radius: 4px;
+            font-size: 15px;
+            color: #ffffff;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.1s ease;
+        }
+
+        .btn-number {
+            background-color: #3b3b3b;
+            font-weight: 600;
+        }
+
+        .btn-number:hover {
+            background-color: #454545;
+        }
+
+        .btn-func {
+            background-color: #323232;
+        }
+
+        .btn-func:hover {
+            background-color: #3cf3cf;
+            background-color: #3a3a3a;
+        }
+
+        .btn-equal {
+            background-color: #cca1ed;
+            color: #000000;
+            font-size: 20px;
+            font-weight: 400;
+        }
+
+        .btn-equal:hover {
+            background-color: #bb90dc;
+        }
+
+        .btn sup {
+            font-size: 10px;
+            vertical-align: super;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator">
+        <div class="header">
+            <div class="header-left">
+                <span class="menu-btn">&#9776;</span>
+                <span class="title">Standard</span>
+                <button class="icon-btn">&#10064;</button> </div>
+            <button class="icon-btn">&#128338;</button> </div>
+
+        <div class="display">0</div>
+
+        <div class="memory-row">
+            <button class="mem-btn mem-disabled">MC</button>
+            <button class="mem-btn mem-disabled">MR</button>
+            <button class="mem-btn">M+</button>
+            <button class="mem-btn">M-</button>
+            <button class="mem-btn">MS</button>
+            <button class="mem-btn mem-disabled">M&#129047;</button>
+        </div>
+
+        <div class="button-grid">
+            <button class="btn btn-func">%</button>
+            <button class="btn btn-func">CE</button>
+            <button class="btn btn-func">C</button>
+            <button class="btn btn-func">&#9003;</button>
+
+            <button class="btn btn-func"><sup>1</sup>/<sub>x</sub></button>
+            <button class="btn btn-func">x<sup>2</sup></button>
+            <button class="btn btn-func"><sup>2</sup>&radic;x</button>
+            <button class="btn btn-func">&divide;</button>
+
+            <button class="btn btn-number">7</button>
+            <button class="btn btn-number">8</button>
+            <button class="btn btn-number">9</button>
+            <button class="btn btn-func">&times;</button>
+
+            <button class="btn btn-number">4</button>
+            <button class="btn btn-number">5</button>
+            <button class="btn btn-number">6</button>
+            <button class="btn btn-func">&minus;</button>
+
+            <button class="btn btn-number">1</button>
+            <button class="btn btn-number">2</button>
+            <button class="btn btn-number">3</button>
+            <button class="btn btn-func">+</button>
+
+            <button class="btn btn-number">&plusmn;</button>
+            <button class="btn btn-number">0</button>
+            <button class="btn btn-number">.</button>
+            <button class="btn btn-equal">=</button>
+        </div>
+    </div>
+
+</body>
+</html>
