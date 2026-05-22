@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Loan Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="calc-wrap">
+  <h1>Loan Calculator</h1>
+
+  <p class="section-title">Loan details</p>
+  <div class="input-grid">
+    <div class="field">
+      <label for="principal">Loan amount</label>
+      <div class="field-input-wrap">
+        <span class="prefix">₦</span>
+        <input type="number" id="principal" value="500000" min="1000" step="1000" />
+      </div>
+    </div>
+    <div class="field">
+      <label for="rate">Annual interest</label>
+      <div class="field-input-wrap">
+        <input type="number" id="rate" value="12" min="0.1" max="100" step="0.1" />
+        <span class="suffix">%</span>
+      </div>
+    </div>
+    <div class="field">
+      <label for="term">Term</label>
+      <div class="field-input-wrap">
+        <input type="number" id="term" value="24" min="1" max="360" step="1" />
+        <span class="suffix" id="term-suffix">mo</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-group" id="term-toggle">
+    <button class="toggle-btn active" data-unit="months">Months</button>
+    <button class="toggle-btn" data-unit="years">Years</button>
+  </div>
+
+  <p class="section-title">Summary</p>
+  <div class="results-grid">
+    <div class="metric">
+      <p class="metric-label">Monthly payment</p>
+      <p class="metric-value highlight" id="monthly">₦0</p>
+    </div>
+    <div class="metric">
+      <p class="metric-label">Total repayment</p>
+      <p class="metric-value" id="total">₦0</p>
+    </div>
+    <div class="metric">
+      <p class="metric-label">Total interest</p>
+      <p class="metric-value" id="interest">₦0</p>
+    </div>
+  </div>
+
+  <div class="bar-track">
+    <div class="bar-principal" id="bar-p" style="width:70%"></div>
+    <div class="bar-interest"  id="bar-i" style="width:30%"></div>
+  </div>
+  <div class="bar-legend">
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#185FA5"></div> Principal
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#D85A30"></div> Interest
+    </div>
+  </div>
+
+  <p class="section-title">Amortization schedule</p>
+  <div class="schedule-wrap">
+    <div class="schedule-header">
+      <span>#</span><span>Payment</span><span>Principal</span>
+      <span>Interest</span><span>Balance</span>
+    </div>
+    <div class="schedule-scroll" id="schedule-body"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

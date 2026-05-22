@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Teal Calculator UI</title>
+    <style>
+        /* Reset & Core Setup */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #0f172a; /* Deep slate background */
+        }
+
+        /* Glass & Neumorphic Wrapper */
+        .calc-container {
+            width: 350px;
+            background: #1e293b; /* Dark teal-slate container */
+            padding: 30px;
+            border-radius: 40px;
+            box-shadow: 
+                15px 15px 30px #090d16, 
+                -15px -15px 30px #2a3a52;
+        }
+
+        /* Header window controls styling */
+        .calc-header {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .circle-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .red { background-color: #f43f5e; }
+        .yellow { background-color: #eab308; }
+        .green { background-color: #10b981; }
+
+        /* Display styling with a two-tier readout */
+        .calc-display {
+            width: 100%;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+            padding: 10px 15px;
+            margin-bottom: 30px;
+            background: #1e293b;
+            border-radius: 20px;
+            box-shadow: inset 5px 5px 10px #090d16, inset -5px -5px 10px #2a3a52;
+        }
+
+        .previous-operand {
+            color: #64748b; /* Muted gray-blue */
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .current-operand {
+            color: #f8fafc; /* Crisp off-white */
+            font-size: 2.8rem;
+            font-weight: 600;
+        }
+
+        /* Grid layout with squarish, rounded buttons */
+        .calc-keypad {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        /* Standard Button Style */
+        .btn {
+            height: 60px;
+            border: none;
+            background: #1e293b;
+            border-radius: 18px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #cbd5e1; /* Light gray for numbers */
+            cursor: pointer;
+            box-shadow: 
+                5px 5px 10px #090d16, 
+                -5px -5px 10px #2a3a52;
+            transition: all 0.15s ease;
+        }
+
+        /* Soft click animation: button appears to sink into screen */
+        .btn:active {
+            box-shadow: 
+                inset 4px 4px 6px #090d16, 
+                inset -4px -4px 6px #2a3a52;
+            transform: scale(0.98);
+        }
+
+        /* Color Coding Accents */
+        .btn.ctrl {
+            color: #38bdf8; /* Bright sky blue for control keys */
+        }
+
+        .btn.op {
+            color: #fb923c; /* Electric orange for operators */
+        }
+
+        .btn.delete {
+            color: #f87171; /* Soft coral red for backspace */
+        }
+
+        /* Gradient pop for the Equals button */
+        .btn.equals {
+            background: linear-gradient(135deg, #0d9488 0%, #115e59 100%); /* Premium Mint/Teal gradient */
+            color: #ffffff;
+            box-shadow: 
+                3px 5px 15px rgba(13, 148, 136, 0.3),
+                inset -2px -2px 6px rgba(0,0,0,0.2);
+        }
+
+        .btn.equals:active {
+            background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calc-container">
+        <!-- Header window dots -->
+        <div class="calc-header">
+            <span class="circle-btn red"></span>
+            <span class="circle-btn yellow"></span>
+            <span class="circle-btn green"></span>
+        </div>
+
+        <!-- Display Area -->
+        <div class="calc-display">
+            <div class="previous-operand">12,400 &times;</div>
+            <div class="current-operand">256,000</div>
+        </div>
+
+        <!-- Keypad Layout -->
+        <div class="calc-keypad">
+            <button class="btn ctrl">C</button>
+            <button class="btn ctrl">&plusmn;</button>
+            <button class="btn ctrl">%</button>
+            <button class="btn op">&divide;</button>
+
+            <button class="btn">7</button>
+            <button class="btn">8</button>
+            <button class="btn">9</button>
+            <button class="btn op">&times;</button>
+
+            <button class="btn">4</button>
+            <button class="btn">5</button>
+            <button class="btn">6</button>
+            <button class="btn op">&minus;</button>
+
+            <button class="btn">1</button>
+            <button class="btn">2</button>
+            <button class="btn">3</button>
+            <button class="btn op">&plus;</button>
+
+            <button class="btn">0</button>
+            <button class="btn">.</button>
+            <button class="btn delete">&#x232b;</button>
+            <button class="btn equals">=</button>
+        </div>
+    </div>
+
+</body>
+</html>
