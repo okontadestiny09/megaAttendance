@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>countdown</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="box">
+            <p>Hour</p>
+            <h1 id="hour"></h1>
+        </div>
+        <div class="box">
+            <p>Minutes</p>
+            <h1 id="minutes">0</h1>
+        </div>
+        <div class="box">
+            <p>Seconds</p>
+            <h1 id="seconds">0</h1>
+        </div>
+    </div>
+
+    <script>
+        const timeTag = document.getElementById("seconds")
+        const timeMinute = document.getElementById("minutes")
+        const timeHour = document.getElementById("hour")
+        let secondsTime = 0;
+        let secondMinute = 0;
+        let secondHour = 0
+        function changeSecondsTime() {
+            if (secondsTime >= 59) {
+                secondsTime = 0;
+                secondMinute++
+            }
+            else {
+                secondsTime++;
+            }
+            if (secondMinute >= 59) {
+                secondMinute = 0;
+                secondHour++
+            }
+            if (secondHour >= 23) {
+                secondHour = 0
+            }
+
+            timeTag.textContent = secondsTime;
+            timeMinute.textContent = secondMinute;
+            timeHour.textContent = secondHour
+        }
+
+        setInterval(changeSecondsTime, 1000)
+    </script>
+</body>
+
+</html>
