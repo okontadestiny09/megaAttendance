@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+   .state-output {
+    background: black;
+    color: white;
+    margin: 10px;
+    padding: 10px;
+}
+</style>
+
+<body>
+    <div id="result"></div>
+    <script>
+        let state_Name = [
+            {
+                state: "Abia state",
+                governor: "Alex Otti",
+                state_capital: "Umuahia",
+                population: "3,727,600(est.)",
+                geopolitical_zone: "South-East",
+                mineral_resource: ["Crude Oil", "Natural Gas", "Lead",
+                    "Zinc", "Limestone", "Salt", "Clay"]
+            },
+            {
+                state: "Adamawa state",
+                governor: "Ahmadu Umaru Fintiri",
+                state_capital: "Yola",
+                population: "4,253,600 (est.)",
+                geopolitical_zone: "North-East",
+                mineral_resource: ["Gypsum", "Kaolin", "Limestone",
+                    "Magnesite", "Titanite", "Bentonite", "Clay"]
+            },
+            {
+                state: "Akwa Ibom state",
+                governor: "Umo Eno",
+                state_capital: "Uyo",
+                population: "5,450,800 (est.)",
+                geopolitical_zone: "South-South",
+                mineral_resource: ["Crude Oil", "Natural Gas", "Limestone",
+                    "Lead", "Zinc", "Salt", "Clay"]
+            },
+            {
+                state: "Anambra state",
+                governor: "Charles Soludo",
+                state_capital: "Awka",
+                population: "5,527,800 (est.)",
+                geopolitical_zone: "South-East",
+                mineral_resource: ["Crude Oil", "Natural Gas", "Limestone",
+                    "Iron Ore", "Glass Sand", "Bauxite", "Clay"]
+            },
+            {
+                state: "Bauchi state",
+                governor: "Bala Mohammed",
+                state_capital: "Bauchi",
+                population: "6,537,900 (est.)",
+                geopolitical_zone: "North-East",
+                mineral_resource: ["Gold", "Columbite", "Cassiterite",
+                    "Iron Ore", "Limestone", "Gypsum", "Clay"]
+            },
+            {
+                state: "Bayelsa state",
+                governor: "Douye Diri",
+                state_capital: "Yenagoa",
+                population: "2,278,100 (est.)",
+                geopolitical_zone: "South-South",
+                mineral_resource: ["Crude Oil", "Natural Gas", "Sand",
+                    "Kaolin", "Clay"]
+            },
+            {
+                state: "Benue state",
+                governor: "Hyacinth Alia",
+                state_capital: "Makurdi",
+                population: "5,741,800 (est.)",
+                geopolitical_zone: "North-Central",
+                mineral_resource: ["Limestone", "Coal", "Gypsum",
+                    "Salt", " Iron Ore", "Columbite", "Clay"]
+            },
+            {
+                state: "Borno state",
+                governor: "Babagana Zulum",
+                state_capital: "Maiduguri",
+                population: "6,102,900 (est.)",
+                geopolitical_zone: "North-East",
+                mineral_resource: ["Limestone", "Iron Ore", "Natron",
+                    "Kaolin", "Gypsum", "Bentonite", "Clay"]
+            },
+
+            {
+                state: "Cross River state",
+                governor: "Bassey Otu",
+                state_capital: "Calabar",
+                population: "3,852,500 (est.)",
+                geopolitical_zone: "South-South",
+                mineral_resource: ["Limestone", "Crude Oil", "Lead",
+                    "Zinc", "Coal", "Barite", "Gold"]
+            },
+            {
+                state: "Delta state",
+                governor: "Sheriff Oborevwori",
+                state_capital: "Asaba",
+                population: "5,663,400 (est.)",
+                geopolitical_zone: "South-South",
+                mineral_resource: ["Natural Gas", "Crude Oil", "Bitumen",
+                    "Clay", "Sand", "Limestone"]
+            },
+            {
+                state: "Ebonyi state",
+                governor: "Francis Nwifuru",
+                state_capital: "Abakaliki",
+                population: "2,880,400 (est.)",
+                geopolitical_zone: "South-East",
+                mineral_resource: ["Lead", "Zinc", "Limestone",
+                    "Salt", "Iron Ore", "Coal", "Kaolin"]
+            },
+            {
+                state: "Edo state",
+                governor: "Monday Okpebholo",
+                state_capital: "Benin City",
+                population: "4,235,600 (est.)",
+                geopolitical_zone: "South-South",
+                mineral_resource: ["Crude Oil", "Natural Gas", "Limestone", "Iron Ore",
+                    "Coal", "Gold", "Clay"]
+            },
+            {
+                state: "Ekiti state",
+                governor: "Biodun Oyebanji",
+                state_capital: "Ado-Ekiti",
+                population: "2,384,400 (est.)",
+                geopolitical_zone: "South-West",
+                mineral_resource: ["Granite", "Quartz", "Feldspar", "Kaolin",
+                    "Limestone", "Gold", "Clay"]
+            },
+            {
+                state: "Enugu state",
+                governor: "Peter Mbah",
+                state_capital: "Enugu",
+                population: "4,411,100 (est.)",
+                geopolitical_zone: "South-East",
+                mineral_resource: ["Coal", "Limestone", "Iron Ore", "Lead",
+                    "Zinc", "Bauxite", "Clay"]
+            },
+            {
+                state: "Federal Capital Territory (Abuja)",
+                governor: "FCT Minister: Nyesom Wike",
+                state_capital: "Abuja",
+                population: "3,564,100 (est.)",
+                geopolitical_zone: "North-Central",
+                mineral_resource: ["Marble", "Clay", "Granite", "Limestone",
+                    "Iron Ore", "Tantalite", "Gold"]
+            },
+            {
+                state: "Gombe state",
+                governor: "Muhammadu Inuwa Yahaya",
+                state_capital: "Gombe",
+                population: "3,256,400 (est.)",
+                geopolitical_zone: "North-East",
+                mineral_resource: ["Limestone", "Gypsum", "Kaolin", "Iron Ore",
+                    "Coal", "Clay", "Natron"]
+            },
+            {
+                state: "Imo state",
+                governor: "Hope Uzodimma",
+                state_capital: "Owerri",
+                population: "5,408,800 (est.)",
+                geopolitical_zone: "South-East",
+                mineral_resource: ["Crude Oil", "Natural Gas", "Limestone", "Lead",
+                    "Zinc", "Bauxite", "Clay"]
+            },
+            {
+                state: "Jigawa state",
+                governor: "Umar Namadi",
+                state_capital: "Dutse",
+                population: "5,828,200 (est.)",
+                geopolitical_zone: "North-West",
+                mineral_resource: ["Iron Ore", "Kaolin", "Salt", "Gypsum",
+                    "Limestone", "Granite", "Clay"]
+            },
+            {
+                state: "Kaduna state",
+                governor: "Uba Sani",
+                state_capital: "Kaduna",
+                population: "8,252,400 (est.)",
+                geopolitical_zone: "North-West",
+                mineral_resource: ["Gold", "Iron Ore", "Graphite", "Kyanite",
+                    "Zircon", "Talc", "Limestone"]
+            },
+            {
+                state: "Katsina state",
+                governor: "Dikko Radda",
+                state_capital: "Katsina",
+                population: "7,831,400 (est.)",
+                geopolitical_zone: "North-West",
+                mineral_resource: ["Gold", "Iron Ore", "Copper", "Clay",
+                    "Gypsum", "Kaolin", "Limestone"]
+            },
+            {
+                state: "Kebbi state",
+                governor: "Nasir Idris",
+                state_capital: "Birnin Kebbi",
+                population: "4,440,900 (est.)",
+                geopolitical_zone: "North-West",
+                mineral_resource: ["Gold", "Iron Ore", "Talc", "Clay",
+                    "Phosphate", "Kaolin", "Limestone"]
+            },
+            {
+                state: "Kogi state",
+                governor: "Ahmed Usman Ododo",
+                state_capital: "Lokoja",
+                population: "4,473,500 (est.)",
+                geopolitical_zone: "North-Central",
+                mineral_resource: ["Coal", "Iron Ore", "Limestone", "Gold",
+                    "Crude Oil", "Gypsum", "Marble"]
+            },
+            {
+                state: "Kwara state",
+                governor: "AbdulRahman AbdulRazaq",
+                state_capital: "Ilorin",
+                population: "3,192,900 (est.)",
+                geopolitical_zone: "North-Central",
+                mineral_resource: ["Feldspar", "Gold", "Marble", "Talc",
+                    "Iron Ore", "Kaolin", "Clay"]
+            },
+            {
+                state: "Lagos state",
+                governor: "Babajide Sanwo-Olu",
+                state_capital: "Ikeja",
+                population: "15,388,000 (est.)",
+                geopolitical_zone: "South-West",
+                mineral_resource: ["Crude Oil", "Natural Gas", "Bitumen", "Glass Sand",
+                    "Clay", "Limestone", "Salt"]
+            },
+            {
+                state: "Nasarawa state",
+                governor: "Abdullahi Sule",
+                state_capital: "Lafia",
+                population: "2,523,400 (est.)",
+                geopolitical_zone: "North-Central",
+                mineral_resource: ["Baryte", "Gemstones", "Iron Ore", "Limestone",
+                    "Columbite", "Tantalite", "Coal"]
+            },
+            {
+                state: "Niger state",
+                governor: "Mohammed Umar Bago",
+                state_capital: "Minna",
+                population: "5,588,500 (est.)",
+                geopolitical_zone: "North-Central",
+                mineral_resource: ["Gold", "Iron Ore", "Talc", "Columbite",
+                    "Cassiterite", "Clay"]
+            },
+            {
+                state: "Ogun state",
+                governor: "Dapo Abiodun",
+                state_capital: "Abeokuta",
+                population: "5,217,300 (est.)",
+                geopolitical_zone: "South-West",
+                mineral_resource: ["Limestone", "Clay", "Phosphate", "Glass Sand",
+                    "Feldspar", "Granite", "Kaolin"]
+            },
+            {
+                state: "Ondo state",
+                governor: "Lucky Aiyedatiwa",
+                state_capital: "Akure",
+                population: "4,671,600 (est.)",
+                geopolitical_zone: "South-West",
+                mineral_resource: ["Bitumen", "Crude Oil", "Natural Gas", "Limestone",
+                    "Iron Ore", "Gold", "Clay"]
+            },
+            {
+                state: "Osun state",
+                governor: "Ademola Adeleke",
+                state_capital: "Osogbo",
+                population: "4,705,600 (est.)",
+                geopolitical_zone: "South-West",
+                mineral_resource: ["Gold", "Feldspar", "Granite", "Quartz",
+                    "Clay", "Kaolin", "Limestone"]
+            },
+            {
+                state: "Oyo state",
+                governor: "Seyi Makinde",
+                state_capital: "Ibadan",
+                population: "7,840,900 (est.)",
+                geopolitical_zone: "South-West",
+                mineral_resource: ["Gold", "Limestone", "Talc", "Marble",
+                    "Granite", "Feldspar", "Clay"]
+            },
+            {
+                state: "Plateau state",
+                governor: "Caleb Mutfwang",
+                state_capital: "Jos",
+                population: "4,200,600 (est.)",
+                geopolitical_zone: "North-Central",
+                mineral_resource: ["Tin", "Columbite", "Limestone", "Iron Ore",
+                    "Kaolin", "Zircon", "Gold"]
+            },
+            {
+                state: "Rivers state",
+                governor: "Siminalayi Fubara",
+                state_capital: "Port Harcourt",
+                population: "7,303,900 (est.)",
+                geopolitical_zone: "South-South",
+                mineral_resource: ["Crude Oil", "Natural Gas", "Sand", "Clay",
+                    "Limestone", "Silica Sand"]
+            },
+            {
+                state: "Sokoto state",
+                governor: "Ahmed Aliyu",
+                state_capital: "Sokoto",
+                population: "4,998,000 (est.)",
+                geopolitical_zone: "North-West",
+                mineral_resource: ["Phosphate", "Gold", "Iron Ore", "Limestone",
+                    "Gypsum", "Kaolin", "Clay"]
+            },
+            {
+                state: "Taraba state",
+                governor: "Agbu Kefas",
+                state_capital: "Jalingo",
+                population: "3,066,900 (est.)",
+                geopolitical_zone: "North-East",
+                mineral_resource: ["Rutile", "Granite", "Limestone", "Iron Ore",
+                    "Kaolin", "Gold", "Clay"]
+            },
+            {
+                state: "Yobe state",
+                governor: "Mai Mala Buni",
+                state_capital: "Damaturu",
+                population: "3,293,900 (est.)",
+                geopolitical_zone: "North-East",
+                mineral_resource: ["Limestone", "Gypsum", "Kaolin", "Diatomite",
+                    "Natron", "Iron Ore", "Clay"]
+            },
+            {
+                state: "Zamfara state",
+                governor: "Dauda Lawal",
+                state_capital: "Gusau",
+                population: "4,151,000 (est.)",
+                geopolitical_zone: "North-West",
+                mineral_resource: ["Gold", "Iron Ore", "Talc", "Tantalite",
+                    "Limestone", "Kaolin", "Clay"]
+            }
+        ]
+state_Name.forEach((state) => {
+    result.innerHTML +=
+        "<div class='state-output'>" +
+            "<h2>" + state.state + "</h2>" +
+            "<p><b>Governor:</b> " + state.governor + "</p>" +
+            "<p><b>Capital:</b> " + state.state_capital + "</p>" +
+            "<p><b>Population:</b> " + state.population + "</p>" +
+            "<p><b>Zone:</b> " + state.geopolitical_zone + "</p>" +
+            "<p><b>Minerals:</b> " + state.mineral_resource.join(", ") + "</p>" +
+        "</div>";
+});
+    </script>
+</body>
+
+</html>
