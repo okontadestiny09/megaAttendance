@@ -1,17 +1,21 @@
 <?php
 
-// Add new students to this array in the format:
-// ["matric_no" => "...", "name" => "...", "department" => "..."],
+// Student records system
 
-$datas = [
-    [
-        "matric_no" => "CMP2307625",
-        "name" => "Udhedhe Wisdom",
-        "department" => "Software Engineering",    
-    ],
+$students = [];
 
-    //  add your arrays here
+// Add Iyedoh Unity details
+$students[] = [
+    "matric_no" => "CMP2307600",
+    "name" => "Iyedoh Unity",
+    "department" => "Software Engineering"
 ];
 
+// DISPLAY THE DATA
+foreach ($students as $student) {
+    echo "Matric No: " . $student["matric_no"] . "<br>";
+    echo "Name: " . $student["name"] . "<br>";
+    echo "Department: " . $student["department"] . "<br><br>";
+}
 
-?>  
+?>S
