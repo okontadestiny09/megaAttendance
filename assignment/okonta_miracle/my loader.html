@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Progress Ring Loader</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0e0e14;
+      font-family: 'Syne', sans-serif;
+    }
+
+    /* ── Background orbs ── */
+    body::before, body::after {
+      content: '';
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    body::before {
+      width: 400px; height: 400px;
+      background: rgba(127, 119, 221, 0.18);
+      top: -100px; left: -100px;
+    }
+    body::after {
+      width: 350px; height: 350px;
+      background: rgba(93, 202, 165, 0.14);
+      bottom: -80px; right: -80px;
+    }
+
+    /* ── Card ── */
+    .card {
+      position: relative;
+      z-index: 1;
+      background: rgba(255,255,255,0.04);
+      border: 0.5px solid rgba(255,255,255,0.10);
+      border-radius: 24px;
+      padding: 3rem 3.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      backdrop-filter: blur(12px);
+      min-width: 320px;
+    }
+
+    .card-title {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ── Ring ── */
+    .ring-wrap {
+      position: relative;
+      width: 160px;
+      height: 160px;
+    }
+
+    .ring-wrap svg {
+      transform: rotate(-90deg);
+      overflow: visible;
+    }
+
+    /* track */
+    .track {
+      fill: none;
+      stroke: rgba(255,255,255,0.07);
+      stroke-width: 8;
+    }
+
+    /* glow trail behind the arc */
+    .glow-arc {
+      fill: none;
+      stroke: #7F77DD;
+      stroke-width: 14;
+      stroke-linecap: round;
+      opacity: 0.15;
+      stroke-dasharray: 440;
+      stroke-dashoffset: 440;
+      animation: fill-arc 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    /* main arc */
+    .progress-arc {
+      fill: none;
+      stroke: url(#arcGrad);
+      stroke-width: 8;
+      stroke-linecap: round;
+      stroke-dasharray: 440;
+      stroke-dashoffset: 440;
+      animation: fill-arc 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    /* leading dot */
+    .lead-dot {
+      fill: #fff;
+      r: 5;
+      animation: move-dot 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      filter: drop-shadow(0 0 4px #7F77DD);
+    }
+
+    @keyframes fill-arc {
+      0%   { stroke-dashoffset: 440; opacity: 1; }
+      70%  { stroke-dashoffset: 0;   opacity: 1; }
+      85%  { stroke-dashoffset: 0;   opacity: 0; }
+      100% { stroke-dashoffset: 440; opacity: 0; }
+    }
+
+    /* dot travels the circumference: circle cx=80 cy=80 r=70 → C=440 */
+    @keyframes move-dot {
+      0%   { cx: 80; cy: 10; opacity: 1; }
+      /* manual arc positions at ~30 degree steps */
+      8%   { cx: 115; cy: 15; }
+      16%  { cx: 146; cy: 40; }
+      24%  { cx: 150; cy: 80; }
+      32%  { cx: 146; cy: 120; }
+      40%  { cx: 115; cy: 145; }
+      48%  { cx: 80;  cy: 150; }
+      56%  { cx: 45;  cy: 145; }
+      64%  { cx: 14;  cy: 120; }
+      70%  { cx: 10;  cy: 80;  opacity: 1; }
+      85%  { cx: 10;  cy: 80;  opacity: 0; }
+      100% { cx: 80;  cy: 10;  opacity: 0; }
+    }
+
+    /* ── Percentage text ── */
+    .ring-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+    }
+
+    .pct-number {
+      font-size: 36px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+      animation: count-up 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    .pct-symbol {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.45);
+    }
+
+    @keyframes count-up {
+      0%   { opacity: 1; }
+      70%  { opacity: 1; }
+      85%  { opacity: 0; }
+      100% { opacity: 0; }
+    }
+
+    /* ── Status text ── */
+    .status {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.04em;
+      height: 20px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .status span {
+      display: block;
+      animation: cycle-status 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    @keyframes cycle-status {
+      0%   { transform: translateY(0);    opacity: 1; }
+      65%  { transform: translateY(0);    opacity: 1; }
+      78%  { transform: translateY(-20px); opacity: 0; }
+      90%  { transform: translateY(20px);  opacity: 0; }
+      100% { transform: translateY(0);    opacity: 1; }
+    }
+
+    /* ── Tick marks around the ring ── */
+    .ticks { position: absolute; inset: 0; }
+
+    /* ── Segment dots (decorative) ── */
+    .segment-dots {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .sdot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      animation: sdot-light 2.4s ease-in-out infinite;
+    }
+    .sdot:nth-child(1) { animation-delay: 0s; }
+    .sdot:nth-child(2) { animation-delay: 0.3s; }
+    .sdot:nth-child(3) { animation-delay: 0.6s; }
+    .sdot:nth-child(4) { animation-delay: 0.9s; }
+    .sdot:nth-child(5) { animation-delay: 1.2s; }
+
+    @keyframes sdot-light {
+      0%, 100% { background: rgba(255,255,255,0.12); transform: scale(1); }
+      50%       { background: #7F77DD;                transform: scale(1.35); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <span class="card-title">Loading assets</span>
+
+    <div class="ring-wrap">
+      <svg width="160" height="160" viewBox="0 0 160 160">
+        <defs>
+          <linearGradient id="arcGrad" x1="0%" y1="0%" x2="100%" y2="0%" gradientUnits="userSpaceOnUse">
+            <stop offset="0%"   stop-color="#5DCAA5"/>
+            <stop offset="50%"  stop-color="#7F77DD"/>
+            <stop offset="100%" stop-color="#F0997B"/>
+          </linearGradient>
+        </defs>
+
+        <!-- tick marks -->
+        <g opacity="0.2">
+          <line x1="80" y1="4"  x2="80" y2="12"  stroke="white" stroke-width="1.5" transform="rotate(0   80 80)"/>
+          <line x1="80" y1="4"  x2="80" y2="12"  stroke="white" stroke-width="1.5" transform="rotate(30  80 80)"/>
+          <line x1="80" y1="4"  x2="80" y2="12"  stroke="white" stroke-width="1.5" transform="rotate(60  80 80)"/>
+          <line x1="80" y1="4"  x2="80" y2="12"  stroke="white" stroke-width="1.5" transform="rotate(90  80 80)"/>
+          <line x1="80" y1="4"  x2="80" y2="12"  stroke="white" stroke-width="1.5" transform="rotate(120 80 80)"/>
+          <line x1="80" y1="4"  x2="80" y2="12"  stroke="white" stroke-width="1.5" transform="rotate(150 80 80)"/>
+          <line x1="80" y1="4"  x2="80" y2="12"  stroke="white" stroke-width="1.5" transform="rotate(180 80 80)"/>
+          <line x1="80" y1="4"  x2="80" y2="12"  stroke="white" stroke-width="1.5" transform="rotate(210 80 80)"/>
+          <line x1="80" y1="4"  x2="80" y2="12"  stroke="white" stroke-width="1.5" transform="rotate(240 80 80)"/>
+          <line x1="80" y1="4"  x2="80" y2="12"  stroke="white" stroke-width="1.5" transform="rotate(270 80 80)"/>
+          <line x1="80" y1="4"  x2="80" y2="12"  stroke="white" stroke-width="1.5" transform="rotate(300 80 80)"/>
+          <line x1="80" y1="4"  x2="80" y2="12"  stroke="white" stroke-width="1.5" transform="rotate(330 80 80)"/>
+        </g>
+
+        <circle class="track" cx="80" cy="80" r="70"/>
+        <circle class="glow-arc" cx="80" cy="80" r="70"/>
+        <circle class="progress-arc" cx="80" cy="80" r="70"/>
+        <circle class="lead-dot" cx="80" cy="10"/>
+      </svg>
+
+      <div class="ring-inner">
+        <span class="pct-number" id="pct">0</span>
+        <span class="pct-symbol">%</span>
+      </div>
+    </div>
+
+    <div class="status"><span id="status-text">Initializing…</span></div>
+
+    <div class="segment-dots">
+      <div class="sdot"></div>
+      <div class="sdot"></div>
+      <div class="sdot"></div>
+      <div class="sdot"></div>
+      <div class="sdot"></div>
+    </div>
+  </div>
+
+  <script>
+    const pctEl = document.getElementById('pct');
+    const statusEl = document.getElementById('status-text');
+    const messages = ['Initializing…', 'Fetching assets…', 'Almost there…', 'Finalizing…'];
+    let msgIndex = 0;
+    const duration = 2400;
+    let start = null;
+
+    function easeInOut(t) {
+      return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+    }
+
+    function animate(ts) {
+      if (!start) start = ts;
+      const elapsed = (ts - start) % duration;
+      const progress = elapsed / duration;
+
+      if (progress < 0.70) {
+        const p = easeInOut(progress / 0.70);
+        pctEl.textContent = Math.round(p * 100);
+      }
+
+      if (elapsed < 50 && ts - start > 100) {
+        msgIndex = (msgIndex + 1) % messages.length;
+        statusEl.textContent = messages[msgIndex];
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    requestAnimationFrame(animate);
+  </script>
+
+</body>
+</html>

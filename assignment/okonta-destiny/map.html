@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nigeria States Portal</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+        }
+
+        header {
+            background-color: #008751;
+            padding: 18px 40px;
+            border-bottom: 4px solid #ffffff;
+            text-align: center;
+        }
+
+        header h1 {
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: 900;
+        }
+
+        header p {
+            color: #d4f5e2;
+            margin-top: 6px;
+        }
+
+        .main-table {
+            width: 100%;
+        }
+
+        .map-cell {
+            width: 50%;
+            vertical-align: top;
+            padding: 24px 12px 24px 24px;
+        }
+
+        .chart-cell {
+            width: 30%;
+            vertical-align: top;
+            padding: 24px 24px 24px 12px;
+            border-left: 2px solid #dddfe2;
+            background-color: #ffffff;
+        }
+
+        .map-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1c1e21;
+            margin-bottom: 14px;
+            padding-left: 10px;
+        }
+
+        .map-container {
+            position: relative;
+            width: 580px;
+            height: 476px;
+        }
+
+        .map-container img {
+            position: absolute;
+            width: 700px;
+            height: 476px;
+            border: 2px solid white;
+            border-radius: 8px;
+        }
+
+        .state-label {
+            position: absolute;
+            padding: 1px 4px;
+            color: green;
+            font-weight: 700;
+            font-size: 11px;
+            text-decoration: none;
+            border-radius: 2px;
+        }
+
+        #sokoto {
+            margin-top: 90px;
+            margin-left: 190px;
+        }
+
+        #kebbi {
+            margin-top: 130px;
+            margin-left: 130px;
+        }
+
+        #zamfara {
+            margin-top: 130px;
+            margin-left: 230px;
+        }
+
+        #katsina {
+            margin-top: 110px;
+            margin-left: 289px;
+        }
+
+        #kano {
+            margin-top: 138px;
+            margin-left: 336px;
+        }
+
+        #jigawa {
+            margin-top: 114px;
+            margin-left: 380px;
+        }
+
+        #yobe {
+            margin-top: 108px;
+            margin-left: 473px;
+        }
+
+        #borno {
+            margin-top: 118px;
+            margin-left: 560px;
+        }
+
+        #bauchi {
+            margin-top: 188px;
+            margin-left: 390px;
+        }
+
+        #gombe {
+            margin-top: 187px;
+            margin-left: 463px;
+        }
+
+        #adamawa {
+            margin-top: 228px;
+            margin-left: 528px;
+        }
+
+        #kaduna {
+            margin-top: 190px;
+            margin-left: 290px;
+        }
+
+        #niger {
+            margin-top: 220px;
+            margin-left: 193px;
+        }
+
+        #kwara {
+            margin-top: 268px;
+            margin-left: 166px;
+        }
+
+        #fct {
+            margin-top: 265px;
+            margin-left: 281px;
+        }
+
+        #nasarawa {
+            margin-top: 271px;
+            margin-left: 318px;
+        }
+
+        #plateau {
+            margin-top: 250px;
+            margin-left: 390px;
+        }
+
+        #kogi {
+            margin-top: 298px;
+            margin-left: 236px;
+        }
+
+        #benue {
+            margin-top: 320px;
+            margin-left: 340px;
+        }
+
+        #taraba {
+            margin-top: 280px;
+            margin-left: 450px;
+        }
+
+        #enugu {
+            margin-top: 355px;
+            margin-left: 290px;
+            font-size: 0.5rem;
+        }
+
+        #ebonyi {
+            margin-top: 369px;
+            margin-left: 322px;
+            font-size: 0.5rem;
+        }
+
+        #anambra {
+            margin-top: 379px;
+            margin-left: 253px;
+            font-size: 0.5rem;
+        }
+
+        #imo {
+            margin-top: 399px;
+            margin-left: 278px;
+            font-size: 0.5rem;
+        }
+
+        #abia {
+            margin-top: 399px;
+            margin-left: 302px;
+            font-size: 0.5rem;
+        }
+
+        #crossriver {
+            margin-top: 383px;
+            margin-left: 349px;
+        }
+
+        #akwaibom {
+            margin-top: 435px;
+            margin-left: 319px;
+            font-size: 0.5rem;
+        }
+
+        #rivers {
+            margin-top: 453px;
+            margin-left: 270px;
+        }
+
+        #bayelsa {
+            margin-top: 429px;
+            margin-left: 195px;
+        }
+
+        #delta {
+            margin-top: 399px;
+            margin-left: 223px;
+            font-size: 0.5rem;
+        }
+
+        #edo {
+            margin-top: 345px;
+            margin-left: 230px;
+        }
+
+        #oyo {
+            margin-top: 283px;
+            margin-left: 110px;
+        }
+
+        #osun {
+            margin-top: 315px;
+            margin-left: 149px;
+        }
+
+        #ekiti {
+            margin-top: 313px;
+            margin-left: 195px;
+            font-size: 0.5rem;
+        }
+
+        #ondo {
+            margin-top: 351px;
+            margin-left: 171px;
+            font-size: 0.5rem;
+        }
+
+        #ogun {
+            margin-top: 335px;
+            margin-left: 90px;
+        }
+
+        #lagos {
+            margin-top: 375px;
+            margin-left: 93px;
+        }
+
+
+        .chart-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1c1e21;
+            margin-bottom: 6px;
+            padding-left: 10px;
+        }
+
+        .chart-subtitle {
+            font-size: 11px;
+            color: #606770;
+            margin-bottom: 14px;
+            padding-left: 2px;
+        }
+
+        .bar-row {
+            margin-bottom: 7px;
+        }
+
+        .bar-name {
+            display: inline-block;
+            width: 82px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #1c1e21;
+            vertical-align: middle;
+        }
+
+        .bar-track {
+            display: inline-block;
+            vertical-align: middle;
+            width: 255px;
+            height: 16px;
+            background-color: #e4e6eb;
+            border-radius: 4px;
+            margin-left: 6px;
+            position: relative;
+        }
+
+        .bar-fill {
+            position: absolute;
+            height: 16px;
+        }
+
+        .bar-value {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 10px;
+            color: #606770;
+            margin-left: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Federal Republic of Nigeria</h1>
+    </header>
+
+    <table class="main-table">
+        <tr>
+
+            <td class="map-cell">
+                <p class="map-title">Nigeria 36 States</p>
+
+                <div class="map-container">
+
+                    <img src="images/nigeria-map.jpg" alt="Map of Nigeria showing all 36 states and FCT">
+
+                    <div><a href="states/sokoto.html" class="state-label" id="sokoto">SOKOTO<br>
+                            <b id="sokoto-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/kebbi.html" class="state-label" id="kebbi">KEBBI<br>
+                            <b id="kebbi-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/zamfara.html" class="state-label" id="zamfara">ZAMFARA<br>
+                            <b id="zamfara-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/katsina.html" class="state-label" id="katsina">KATSINA<br>
+                            <b id="katsina-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/kano.html" class="state-label" id="kano">KANO<br>
+                            <b id="kano-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/jigawa.html" class="state-label" id="jigawa">JIGAWA<br>
+                            <b id="jigawa-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/yobe.html" class="state-label" id="yobe">YOBE<br>
+                            <b id="yobe-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/borno.html" class="state-label" id="borno">BORNO<br>
+                            <b id="borno-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/bauchi.html" class="state-label" id="bauchi">BAUCHI<br>
+                            <b id="bauchi-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/gombe.html" class="state-label" id="gombe">GOMBE<br>
+                            <b id="gombe-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/adamawa.html" class="state-label" id="adamawa">ADAMAWA<br>
+                            <b id="adamawa-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/kaduna.html" class="state-label" id="kaduna">KADUNA<br>
+                            <b id="kaduna-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/niger.html" class="state-label" id="niger">NIGER<br>
+                            <b id="niger-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/kwara.html" class="state-label" id="kwara">KWARA<br>
+                            <b id="kwara-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/fct.html" class="state-label" id="fct">FCT<br>
+                            <b id="fctabuja-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/nasarawa.html" class="state-label" id="nasarawa">NASARAWA<br>
+                            <b id="nasarawa-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/plateau.html" class="state-label" id="plateau">PLATEAU<br>
+                            <b id="plateau-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/kogi.html" class="state-label" id="kogi">KOGI<br>
+                            <b id="kogi-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/benue.html" class="state-label" id="benue">BENUE<br>
+                            <b id="benue-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/taraba.html" class="state-label" id="taraba">TARABA<br>
+                            <b id="taraba-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/enugu.html" class="state-label" id="enugu">ENUGU<br>
+                            <b id="enugu-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/ebonyi.html" class="state-label" id="ebonyi">EBONYI<br>
+                            <b id="ebonyi-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/anambra.html" class="state-label" id="anambra">ANAMBRA<br>
+                            <b id="anambra-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/imo.html" class="state-label" id="imo">IMO<br>
+                            <b id="imo-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/abia.html" class="state-label" id="abia">ABIA<br>
+                            <b id="abia-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/cross-river.html" class="state-label" id="crossriver">CROSS RIVER<br>
+                            <b id="crossriver-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/akwa-ibom.html" class="state-label" id="akwaibom">AKWA IBOM<br>
+                            <b id="akwaibom-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/rivers.html" class="state-label" id="rivers">RIVERS<br>
+                            <b id="rivers-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/bayelsa.html" class="state-label" id="bayelsa">BAYELSA<br>
+                            <b id="bayelsa-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/delta.html" class="state-label" id="delta">DELTA<br>
+                            <b id="delta-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/edo.html" class="state-label" id="edo">EDO<br>
+                            <b id="edo-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/oyo.html" class="state-label" id="oyo">OYO<br>
+                            <b id="oyo-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/osun.html" class="state-label" id="osun">OSUN<br>
+                            <b id="osun-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/ekiti.html" class="state-label" id="ekiti">EKITI<br>
+                            <b id="ekiti-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/ondo.html" class="state-label" id="ondo">ONDO<br>
+                            <b id="ondo-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/ogun.html" class="state-label" id="ogun">OGUN<br>
+                            <b id="ogun-pop">0.0 M</b></a></div>
+
+                    <div><a href="states/lagos.html" class="state-label" id="lagos">LAGOS<br>
+                            <b id="lagos-pop">0.0 M</b></a></div>
+
+                </div>
+            </td>
+
+            <td class="chart-cell">
+                <p class="chart-title">Population by State</p>
+                <p class="chart-subtitle">Estimated figures - highest to lowest</p>
+
+                <div class="bar-row">
+                    <span class="bar-name">Lagos</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:255px; background-color:#c0392b;"></div>
+                    </span>
+                    <span class="bar-value">15.4M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Kano</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:229px; background-color:#2471a3;"></div>
+                    </span>
+                    <span class="bar-value">13.8M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Kaduna</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:137px; background-color:#2471a3;"></div>
+                    </span>
+                    <span class="bar-value">8.25M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Oyo</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:130px; background-color:#c0392b;"></div>
+                    </span>
+                    <span class="bar-value">7.84M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Katsina</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:130px; background-color:#2471a3;"></div>
+                    </span>
+                    <span class="bar-value">7.83M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Rivers</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:121px; background-color:#117a65;"></div>
+                    </span>
+                    <span class="bar-value">7.3M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Bauchi</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:108px; background-color:#1a5276;"></div>
+                    </span>
+                    <span class="bar-value">6.54M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Borno</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:101px; background-color:#1a5276;"></div>
+                    </span>
+                    <span class="bar-value">6.1M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Jigawa</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:97px; background-color:#2471a3;"></div>
+                    </span>
+                    <span class="bar-value">5.83M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Benue</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:95px; background-color:#7d6608;"></div>
+                    </span>
+                    <span class="bar-value">5.74M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Delta</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:94px; background-color:#117a65;"></div>
+                    </span>
+                    <span class="bar-value">5.66M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Niger</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:93px; background-color:#7d6608;"></div>
+                    </span>
+                    <span class="bar-value">5.59M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Anambra</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:92px; background-color:#6c3483;"></div>
+                    </span>
+                    <span class="bar-value">5.53M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Akwa Ibom</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:90px; background-color:#117a65;"></div>
+                    </span>
+                    <span class="bar-value">5.45M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Imo</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:90px; background-color:#6c3483;"></div>
+                    </span>
+                    <span class="bar-value">5.41M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Ogun</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:86px; background-color:#c0392b;"></div>
+                    </span>
+                    <span class="bar-value">5.22M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Sokoto</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:83px; background-color:#2471a3;"></div>
+                    </span>
+                    <span class="bar-value">5.0M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Osun</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:78px; background-color:#c0392b;"></div>
+                    </span>
+                    <span class="bar-value">4.71M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Ondo</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:77px; background-color:#c0392b;"></div>
+                    </span>
+                    <span class="bar-value">4.67M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Kogi</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:74px; background-color:#7d6608;"></div>
+                    </span>
+                    <span class="bar-value">4.47M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Kebbi</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:73px; background-color:#2471a3;"></div>
+                    </span>
+                    <span class="bar-value">4.44M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Enugu</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:73px; background-color:#6c3483;"></div>
+                    </span>
+                    <span class="bar-value">4.41M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Edo</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:70px; background-color:#117a65;"></div>
+                    </span>
+                    <span class="bar-value">4.24M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Adamawa</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:70px; background-color:#1a5276;"></div>
+                    </span>
+                    <span class="bar-value">4.25M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Plateau</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:70px; background-color:#7d6608;"></div>
+                    </span>
+                    <span class="bar-value">4.2M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Zamfara</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:69px; background-color:#2471a3;"></div>
+                    </span>
+                    <span class="bar-value">4.15M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Cross River</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:64px; background-color:#6c3483;"></div>
+                    </span>
+                    <span class="bar-value">3.85M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Abia</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:62px; background-color:#6c3483;"></div>
+                    </span>
+                    <span class="bar-value">3.73M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">FCT Abuja</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:59px; background-color:#7d6608;"></div>
+                    </span>
+                    <span class="bar-value">3.56M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Yobe</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:55px; background-color:#1a5276;"></div>
+                    </span>
+                    <span class="bar-value">3.29M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Gombe</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:54px; background-color:#1a5276;"></div>
+                    </span>
+                    <span class="bar-value">3.26M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Kwara</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:53px; background-color:#7d6608;"></div>
+                    </span>
+                    <span class="bar-value">3.19M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Taraba</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:51px; background-color:#1a5276;"></div>
+                    </span>
+                    <span class="bar-value">3.07M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Ebonyi</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:48px; background-color:#6c3483;"></div>
+                    </span>
+                    <span class="bar-value">2.88M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Nasarawa</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:42px; background-color:#7d6608;"></div>
+                    </span>
+                    <span class="bar-value">2.52M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Ekiti</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:39px; background-color:#c0392b;"></div>
+                    </span>
+                    <span class="bar-value">2.38M</span>
+                </div>
+                <div class="bar-row">
+                    <span class="bar-name">Bayelsa</span>
+                    <span class="bar-track">
+                        <div class="bar-fill" style="width:38px; background-color:#117a65;"></div>
+                    </span>
+                    <span class="bar-value">2.28M</span>
+                </div>
+
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        const stateName = [
+            {
+                state: "Abia",
+                population: 3.7
+            },
+            {
+                state: "Adamawa",
+                population: 4.3
+            },
+            {
+                state: "Akwaibom",
+                population: 5.5
+            },
+            {
+                state: "Anambra",
+                population: 5.5
+            },
+            {
+                state: "Bauchi",
+                population: 6.5
+            },
+            {
+                state: "Bayelsa",
+                population: 2.3
+            },
+            {
+                state: "Benue",
+                population: 5.7
+            },
+            {
+                state: "Borno",
+                population: 6.1
+            },
+            {
+                state: "Crossriver",
+                population: 3.9
+            },
+            {
+                state: "Delta",
+                population: 5.7
+            },
+            {
+                state: "Ebonyi",
+                population: 2.9
+            },
+            {
+                state: "Edo",
+                population: 4.2
+            },
+            {
+                state: "Ekiti",
+                population: 2.4
+            },
+            {
+                state: "Enugu",
+                population: 4.4
+            },
+            {
+                state: "Fctabuja",
+                population: 3.6
+            },
+            {
+                state: "Gombe",
+                population: 3.3
+            },
+            {
+                state: "Imo",
+                population: 5.4
+            },
+            {
+                state: "Jigawa",
+                population: 5.8
+            },
+            {
+                state: "Kaduna",
+                population: 8.3
+            },
+            {
+                state: "Kano",
+                population: 15.5
+            },
+            {
+                state: "Katsina",
+                population: 7.8
+            },
+            {
+                state: "Kebbi",
+                population: 4.4
+            },
+            {
+                state: "Kogi",
+                population: 4.5
+            },
+            {
+                state: "Kwara",
+                population: 3.2
+            },
+            {
+                state: "Lagos",
+                population: 15.4
+            },
+            {
+                state: "Nasarawa",
+                population: 2.9
+            },
+            {
+                state: "Niger",
+                population: 6.2
+            },
+            {
+                state: "Ogun",
+                population: 6.4
+            },
+            {
+                state: "Ondo",
+                population: 5.1
+            },
+            {
+                state: "Osun",
+                population: 4.7
+            },
+            {
+                state: "Oyo",
+                population: 8.0
+            },
+            {
+                state: "Plateau",
+                population: 4.2
+            },
+            {
+                state: "Rivers",
+                population: 8.0
+            },
+            {
+                state: "Sokoto",
+                population: 5.9
+            },
+            {
+                state: "Taraba",
+                population: 3.3
+            },
+            {
+                state: "Yobe",
+                population: 3.7
+            },
+            {
+                state: "Zamfara",
+                population: 5.3
+            }
+        ];
+
+
+        stateName.forEach(item => {
+            let count = 0;
+
+            const id = item.state.toLowerCase().replaceAll(" ", "-") + "-pop";
+            const el = document.getElementById(id);
+
+            if (!el) return;
+
+            const counter = setInterval(() => {
+                count += 0.1;
+                el.innerHTML = `<b>${count.toFixed(1)} M</b>`;
+
+                if (count >= item.population) {
+                    clearInterval(counter);
+                }
+            }, 100);
+        });
+    </script>
+</body>
+
+</html>

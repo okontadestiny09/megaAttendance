@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Explorer</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            background: blue;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        h2 {
+            margin-top: 30px;
+            color: blue;
+            padding-left: 10px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px blue;
+        }
+
+        .card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 10px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 8px;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background: blue;
+            color: white;
+        }
+
+        .btn-back {
+            background: blue;
+            color: white;
+            width: auto;
+            padding: 10px 15px;
+            margin-bottom: 15px;
+        }
+
+        .loader-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.85);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            z-index: 9999;
+        }
+
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 6px solid gray;
+            border-top: 6px solid blue;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .blue {
+            color: blue;
+            margin-top: 1rem;
+        }
+
+        li::marker {
+            color: blue;
+        }
+
+        .detail-box {
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px blue;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .detail-img {
+            width: 80%;
+            max-width: 500px;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 12px;
+            display: block;
+            margin: auto;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        Recipe Explorer
+    </header>
+
+    <div class="container">
+
+        <div id="loader" class="loader-overlay">
+            <div class="loader"></div>
+        </div>
+
+        <div id="homePage">
+            <h2>Categories & Recipes</h2>
+            <div id="content"></div>
+        </div>
+
+        <div id="detailPage" class="hidden">
+
+            <button class="btn-back" onclick="goHome()">Back</button>
+
+            <div id="detailContent"></div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        const content = document.getElementById("content");
+        const detailContent = document.getElementById("detailContent");
+        const homePage = document.getElementById("homePage");
+        const detailPage = document.getElementById("detailPage");
+        const loader = document.getElementById("loader");
+
+        function recipeCard(meal) {
+            return `
+                <div class="card">
+                    <img src="${meal.strMealThumb}">
+                    <div class="card-body">
+                        <h4>${meal.strMeal}</h4>
+                        <button class="btn-primary" onclick="openDetail('${meal.idMeal}')">
+                            See Details
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function loadAll() {
+
+            loader.style.display = "flex";
+
+            fetch("https://www.themealdb.com/api/json/v1/1/categories.php")
+                .then(res => res.json())
+                .then(data => {
+
+                    content.innerHTML = "";
+
+                    let loaderHidden = false;
+
+                    data.categories.forEach(cat => {
+
+                        fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${cat.strCategory}`)
+                            .then(res => res.json())
+                            .then(data2 => {
+
+                                content.innerHTML += `
+                                    <h2>${cat.strCategory}</h2>
+                                    <div id="${cat.strCategory}" class="grid"></div>
+                                `;
+
+                                const container = document.getElementById(cat.strCategory);
+
+                                data2.meals.forEach(meal => {
+                                    container.innerHTML += recipeCard(meal);
+                                });
+
+                                if (!loaderHidden) {
+                                    loader.style.display = "none";
+                                    loaderHidden = true;
+                                }
+
+                            });
+
+                    });
+
+                });
+
+        }
+
+        function openDetail(id) {
+
+            homePage.classList.add("hidden");
+            detailPage.classList.remove("hidden");
+
+            detailContent.innerHTML = ` <div id="loader" class="loader-overlay">
+            <div class="loader"></div>
+        </div>`;
+
+            fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
+                .then(res => res.json())
+                .then(data => {
+
+                    const meal = data.meals[0];
+
+                    let ingredients = "";
+
+                    for (let i = 1; i <= 20; i++) {
+                        if (meal[`strIngredient${i}`]) {
+                            ingredients += `
+                                <li>
+                                    ${meal[`strIngredient${i}`]} - ${meal[`strMeasure${i}`]}
+                                </li>
+                            `;
+                        }
+                    }
+
+                    detailContent.innerHTML = `
+                        <div class="detail-box">
+
+                            <img src="${meal.strMealThumb}" class="detail-img">
+
+                            <h2>${meal.strMeal}</h2>
+
+                            <h3 class="blue">Instructions</h3>
+                            <p>${meal.strInstructions}</p>
+
+                            <h3 class="blue">Ingredients</h3>
+                            <ul>${ingredients}</ul>
+
+                        </div>
+                    `;
+                });
+
+        }
+
+        function goHome() {
+            detailPage.classList.add("hidden");
+            homePage.classList.remove("hidden");
+        }
+
+        loadAll();
+
+    </script>
+
+</body>
+
+</html>

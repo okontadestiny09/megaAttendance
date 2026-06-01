@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe App</title>
+
+    <style>
+        body {
+            margin: 0;
+        }
+
+        header {
+            background: gold;
+            color: black;
+            padding: 20px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .wrapper {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .section-title {
+            margin: 30px 0 15px;
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .item-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .item-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .item-content {
+            padding: 10px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            background: gold;
+        }
+
+        .back {
+            width: auto;
+            padding: 10px 15px;
+            margin-bottom: 15px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid gray;
+            border-top: 5px solid gold;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 30px auto;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .details-box {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .details-box img {
+            width: 100%;
+            max-width: 500px;
+            height: 320px;
+            object-fit: cover;
+            display: block;
+            margin: auto;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>Recipe Explorer</header>
+
+    <div class="wrapper">
+
+        <div id="homeView">
+            <div id="recipeContainer"></div>
+        </div>
+
+        <div id="detailView" class="hidden">
+
+            <button class="back" onclick="showHome()">Back</button>
+
+            <div id="detailContainer"></div>
+
+        </div>
+
+    </div>
+
+    <script>
+        const API = "https://www.themealdb.com/api/json/v1/1";
+
+        const recipeContainer = document.getElementById("recipeContainer");
+        const detailContainer = document.getElementById("detailContainer");
+
+        const homeView = document.getElementById("homeView");
+        const detailView = document.getElementById("detailView");
+
+        const loader = () => `<div class="spinner"></div>`;
+
+        const cardTemplate = (meal) => {
+            return `
+                <div class="item-card">
+                    <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+                    <div class="item-content">
+                        <h4>${meal.strMeal}</h4>
+                        <button onclick="openRecipe('${meal.idMeal}')">
+                            View Recipe
+                        </button>
+                    </div>
+                </div>
+            `;
+        };
+
+        const fetchCategories = () => {
+            fetch(`${API}/categories.php`)
+                .then(res => res.json())
+                .then(data => {
+                    recipeContainer.innerHTML = "";
+
+                    data.categories.forEach(cat => {
+                        recipeContainer.innerHTML += `
+                            <h2 class="section-title">${cat.strCategory}</h2>
+                            <div id="${cat.strCategory}" class="items-grid">
+                                ${loader()}
+                            </div>
+                        `;
+
+                        fetch(`${API}/filter.php?c=${cat.strCategory}`)
+                            .then(res => res.json())
+                            .then(result => {
+                                const box = document.getElementById(cat.strCategory);
+                                box.innerHTML = "";
+
+                                result.meals.forEach(meal => {
+                                    box.innerHTML += cardTemplate(meal);
+                                });
+                            });
+                    });
+                });
+        };
+
+        const openRecipe = (id) => {
+            homeView.classList.add("hidden");
+            detailView.classList.remove("hidden");
+
+            detailContainer.innerHTML = loader();
+
+            fetch(`${API}/lookup.php?i=${id}`)
+                .then(res => res.json())
+                .then(data => {
+                    const meal = data.meals[0];
+
+                    let ingredients = "";
+
+                    for (let i = 1; i <= 20; i++) {
+                        if (meal[`strIngredient${i}`]) {
+                            ingredients += `<li>${meal[`strIngredient${i}`]} - ${meal[`strMeasure${i}`]}</li>`;
+                        }
+                    }
+
+                    detailContainer.innerHTML = `
+                        <div class="details-box">
+                            <img src="${meal.strMealThumb}">
+                            <h2>${meal.strMeal}</h2>
+                            <h3>Instructions</h3>
+                            <p>${meal.strInstructions}</p>
+                            <h3>Ingredients</h3>
+                            <ul>${ingredients}</ul>
+                        </div>
+                    `;
+                });
+        };
+
+        const showHome = () => {
+            detailView.classList.add("hidden");
+            homeView.classList.remove("hidden");
+        };
+
+        fetchCategories();
+    </script>
+
+</body>
+
+</html>

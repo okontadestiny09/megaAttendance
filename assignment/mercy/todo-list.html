@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Todo App</title>
+
+<link rel="stylesheet" href="../../fontawesome/css/all.min.css">
+<style>
+
+body{
+  background: cornflowerblue;
+  display:flex;
+  justify-content:center;
+  padding:30px;
+}
+
+.box{
+  background:white;
+  width:100%;
+  max-width:400px;
+  padding:15px;
+  border-radius:10px;
+}
+
+.input-area{
+  display:flex;
+  gap:10px;
+  margin-bottom:10px;
+}
+
+input{
+  flex:1;
+  padding:10px;
+}
+
+button{
+  padding:10px;
+  border:none;
+  background:dodgerblue;
+  color:white;
+  cursor:pointer;
+  border-radius:5px;
+}
+
+.item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:aliceblue;
+  margin-top:10px;
+  padding:10px;
+  border-radius:5px;
+}
+
+.done{
+  text-decoration:line-through;
+  opacity:0.5;
+}
+
+.actions{
+  display:flex;
+  gap:8px;
+}
+
+.actions button{
+  width:30px;
+  height:30px;
+  border:none;
+  cursor:pointer;
+  border-radius:4px;
+}
+
+.btn {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    border: none;
+    background: dodgerblue;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+  <div class="input-area">
+    <input id="input" placeholder="Task">
+    <button onclick="addTask()">Add</button>
+  </div>
+
+  <div id="list"></div>
+
+</div>
+
+<script>
+
+let todo = JSON.parse(localStorage.getItem("todo")) || [];
+
+const input = document.getElementById("input");
+const list = document.getElementById("list");
+
+function save(){
+  localStorage.setItem("todo", JSON.stringify(todo));
+}
+
+function show(){
+  list.innerHTML = "";
+
+  todo.forEach((t, i) => {
+
+    const div = document.createElement("div");
+    div.className = "item";
+
+    const text = document.createElement("span");
+    text.textContent = t.text;
+
+    if(t.completed){
+      text.classList.add("done");
+    }
+
+    const actions = document.createElement("div");
+    actions.className = "actions";
+
+    const ok = document.createElement("button");
+    ok.className = "btn";
+    ok.innerHTML = '<i class="fa-solid fa-check"></i>';
+
+    ok.onclick = () => {
+      t.completed = !t.completed;
+      save();
+      show();
+    };
+
+    const del = document.createElement("button");
+    del.className = "btn";
+    del.innerHTML = '<i class="fa-solid fa-trash"></i>';
+
+    del.onclick = () => {
+      todo.splice(i, 1);
+      save();
+      show();
+    };
+
+    actions.append(ok, del);
+    div.append(text, actions);
+    list.append(div);
+  });
+}
+
+function addTask(){
+  if(!input.value.trim()) return;
+
+  todo.unshift({
+    text: input.value,
+    completed: false
+  });
+
+  input.value = "";
+  save();
+  show();
+}
+
+show();
+
+</script>
+
+</body>
+</html>
