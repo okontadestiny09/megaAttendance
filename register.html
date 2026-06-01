@@ -58,24 +58,17 @@
 
         <div class="info mb-3 form-floating">
           <select class="form-select" id="dept" required>
-            <option value=""></option>
-            <option>Software Engineering</option>
-            <option>Computer Science</option>
-            <option>ICT</option>
-            <option>Cyber Security</option>
+            <option value="">Select Department</option>
           </select>
           <label for="dept">Department</label>
         </div>
 
         <div class="info mb-3 form-floating">
           <select class="form-select" id="faculty" required>
-            <option value=""></option>
-            <option>Faculty of Computing</option>
-            <option>Faculty of Engineering</option>
+            <option value="">Select Faculty</option>
           </select>
           <label for="faculty">Faculty</label>
         </div>
-
         <div class="info mb-3 form-floating">
           <select class="form-select" id="place-of-it" required>
             <option value=""></option>
@@ -105,6 +98,36 @@
     </div>
   </div>
   </div>
+
+  <script>
+    // Load Departments
+    const deptSelect = document.getElementById("dept");
+
+    fetch("./backend/get_departments.php")
+      .then(response => response.json())
+      .then(departments => {
+        departments.forEach(dept => {
+          const option = document.createElement("option");
+          option.value = dept.id;
+          option.textContent = dept.name;
+          deptSelect.appendChild(option);
+        });
+      });
+
+    // Load Faculties
+    const facultySelect = document.getElementById("faculty");
+
+    fetch("./backend/get_faculties.php")
+      .then(response => response.json())
+      .then(faculties => {
+        faculties.forEach(faculty => {
+          const option = document.createElement("option");
+          option.value = faculty.id;
+          option.textContent = faculty.name;
+          facultySelect.appendChild(option);
+        });
+      });
+  </script>
 </body>
 
 </html>
