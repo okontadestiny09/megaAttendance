@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genotype Calculator</title>
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Genotype Calculator</h1>
+
+        <div class="input-group">
+            <label for="mother">Mother's Genotype:</label>
+            <select id="mother">
+                <option value="AA">AA</option>
+                <option value="AS">AS</option>
+                <option value="AC">AC</option>
+                <option value="SS">SS</option>
+                <option value="SC">SC</option>
+                <option value="CC">CC</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="father">Father's Genotype:</label>
+            <select id="father">
+                <option value="AA">AA</option>
+                <option value="AS">AS</option>
+                <option value="AC">AC</option>
+                <option value="SS">SS</option>
+                <option value="SC">SC</option>
+                <option value="CC">CC</option>
+            </select>
+        </div>
+
+        <button id="calculateBtn">Calculate Probabilities</button>
+
+        <div class="results-box" id="resultsBox">
+            <h2>Offspring Outcome Probabilities:</h2>
+            <div id="resultsList"></div>
+        </div>
+    </div>
+
+    <!-- Link to external JavaScript -->
+    <script src="script.js"></script>
+</body>
+
+</html>

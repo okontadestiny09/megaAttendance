@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        const x = [2, 3, 8, 6, 10, 15];
+
+        // const y = x.filter(function(each){
+
+        // });
+
+        // const z = x.filter((each) => {
+        //     if (each > 8) {
+        //         return each;
+        //     }
+        // })
+
+        // console.log(z);
+
+
+        const y = x.reduce((cumulative, single) => {
+            return cumulative + single;
+        }, 2)
+
+        console.log(y);
+
+
+
+
+    </script>
+</body>
+
+</html>

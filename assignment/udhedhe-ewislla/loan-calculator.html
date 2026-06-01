@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Interest Calculator</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #FAFAFA;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .calculator-card {
+            background-color: #062A39;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            color: #FAFAFA;
+            width: 320px;
+        }
+
+        input {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #00B4D5;
+            border-radius: 6px;
+            font-size: 15px;
+            background-color: #FAFAFA;
+            color: #333;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #00B4D5;
+            color: #062A39;
+            border: none;
+            padding: 14px 20px;
+            margin-top: 15px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 90%;
+        }
+
+        button:hover {
+            background-color: #0096b3;
+        }
+
+        #result-display {
+            margin-top: 25px;
+            font-size: 1.1rem;
+            color: #00B4D5;
+            min-height: 30px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="calculator-card">
+        <h2>Calculate Loan Interest</h2>
+
+        <input type="number" placeholder="Enter Loan Amount (N)" id="loanInput">
+
+        <input type="number" placeholder="Enter Duration (1-24 months)" id="durationInput" min="1" max="24">
+
+        <button onclick="calculateLoan()">Calculate Interest</button>
+
+        <h3 id="result-display"></h3>
+    </div>
+
+    <script>
+        const resultDisplay = document.getElementById('result-display');
+
+        function calculateLoan() {
+            const loanValue = Number(document.getElementById('loanInput').value);
+            const durationValue = Number(document.getElementById('durationInput').value);
+
+
+            if (loanValue <= 0) {
+                resultDisplay.textContent = "Please enter a valid loan amount.";
+                return;
+            }
+
+            if (durationValue < 1 || durationValue > 24) {
+                resultDisplay.textContent = "Please enter a duration between 1 and 24 months.";
+                return;
+            }
+
+
+            const interestRate = 4 + durationValue;
+
+
+            const calculatedInterest = loanValue * (interestRate / 100);
+
+
+            resultDisplay.textContent = "Interest: N" + calculatedInterest.toFixed(2) + " at " + interestRate + "% rate for " + durationValue + " month(s).";
+        }
+    </script>
+
+</body>
+
+</html>

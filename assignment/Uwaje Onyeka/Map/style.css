@@ -1,0 +1,226 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100vw;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#nigimg {
+    width: 1000px;
+}
+
+#resultField {
+    height: 200px;
+    width: 500px;
+    background-color: cyan;
+    border-radius: 20px;
+    padding: 5px
+}
+
+#textField {
+    width: 500px;
+    height: 30px
+}
+
+.field {
+    width: 100px;
+    height: 30px
+}
+
+.brightColor {
+    color: black
+}
+
+#abiaPop {
+    margin-top: -100px;
+    margin-left: -195px;
+}
+
+#adamawaPop {
+    margin-left: 500px;
+    margin-top: -300px;
+}
+
+#akwaIbomPop {
+    margin-top: 300px;
+    margin-left: -200px;
+}
+
+#anambraPop {
+    margin-left: -320px;
+    margin-top: -100px;
+}
+
+#bauchiPop {
+    margin-top: -400px;
+    margin-left: 100px;
+}
+
+#bayelsaPop {
+    margin-top: 450px;
+    margin-left: -450px;
+}
+
+#benuePop {
+    margin-top: -200px;
+    margin-left: 10px;
+}
+
+#bornoPop {
+    margin-top: -400px;
+    margin-left: 600px;
+}
+
+#crossRiverPop {
+    margin-top: 500px;
+    margin-left: -50px;
+}
+
+#deltaPop {
+    margin-left: -500px;
+    margin-top: -50px;
+}
+
+#ebonyiPop {
+    margin-top: -40px;
+    margin-left: -100px;
+}
+
+#edoPop {
+    margin-top: -100px;
+    margin-left: -400px;
+}
+
+#ekitiPop {
+    margin-top: -60px;
+    margin-left: -530px;
+}
+
+#enuguPop {
+    margin-top: 100px;
+    margin-left: -220px;
+}
+
+#gombePop {
+    margin-top: -350px;
+    margin-left: 359px;
+}
+
+#imoPop {
+    margin-top: 380px;
+    margin-left: -285px;
+}
+
+#jigawaPop {
+    margin-top: -600px;
+    margin-left: 40px;
+}
+
+#kadunaPop {
+    margin-top: 200px;
+    margin-left: -150px;
+}
+
+#kanoPop {
+    margin-top: -200px;
+    margin-left: -10px;
+}
+
+#katsinaPop {
+    margin-left: -200px;
+}
+
+#kebbiPop {
+    margin-left: -700px;
+}
+
+#kogiPop {
+    margin-top: 330px;
+    margin-left: -220px;
+}
+
+#kwaraPop {
+    margin-top: -100px;
+    margin-left: -580px;
+}
+
+#lagosPop {
+    margin-top: 120px;
+    margin-left: -780px;
+}
+
+#nasarawaPop {
+    margin-top: -190px;
+    margin-left: -50px;
+}
+
+#nigerPop {
+    margin-top: -80px;
+    margin-left: -400px;
+}
+
+#ogunPop {
+    margin-top: 190px;
+    margin-left: -720px;
+}
+
+#ondoPop {
+    margin-top: 5px;
+    margin-left: -605px;
+}
+
+#osunPop {
+    margin-top: -70px;
+    margin-left: -672px;
+}
+
+#oyoPop {
+    margin-top: -50px;
+    margin-left: -800px;
+}
+
+#plateauPop {
+    margin-top: -100px;
+    margin-left: 130px;
+}
+
+#riversPop {
+    margin-top: 290px;
+    margin-left: -300px;
+}
+
+#sokotoPop {
+    margin-top: -650px;
+    margin-left: -550px;
+}
+
+#tarabaPop {
+    margin-top: 400px;
+    margin-left: 250px;
+}
+
+#yobePop {
+    margin-top: -430px;
+    margin-left: 330px;
+}
+
+#zamfaraPop {
+    margin-left: -320px;
+}
+
+#fctPop {
+    margin-top: 280px;
+    margin-left: -280px;
+}
+
+#writeField {
+    margin-top: 400px;
+}

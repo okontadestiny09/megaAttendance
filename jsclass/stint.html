@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1 id="seconds"></h1>
+    <h1 id="minutes"></h1>
+
+    <script>
+
+        const secondstag = document.getElementById('seconds');
+        const minutestag = document.getElementById('minutes');
+
+        let secondsTime = 0;
+        let minutesTime = 0;
+        function changeSecondsTime() {
+            if (secondsTime === 60) {
+                secondsTime = 0;
+                minutesTime++;
+            } else {
+                secondsTime++;
+            }
+            secondstag.textContent = secondsTime;
+            minutestag.textContent = minutesTime;
+        }
+
+        setInterval(changeSecondsTime, 1000)
+    </script>
+</body>
+
+</html>

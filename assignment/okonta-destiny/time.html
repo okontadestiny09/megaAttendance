@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: navy;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: white;
+    }
+
+    .sub-container {
+        display: flex;
+        background-color: navy;
+        border: 5px solid gold;
+        border-radius: 5%;
+        padding: 1.5rem 2.5rem;
+    }
+
+    .box {
+        margin-left: 0.3rem;
+        width: 7rem;
+        text-align: center;
+        border: 3px solid gold;
+        padding: 0.1rem 0.6rem;
+    }
+
+    .dot {
+        font-size: 3rem;
+        font-weight: 500;
+        align-items: center;
+        padding: 0.5rem 0;
+    }
+
+    p {
+        font-size: 1.3rem;
+    }
+
+    #hours,
+    #minutes,
+    #seconds {
+        display: inline-block;
+        width: 2rem;
+        text-align: center;
+        font-size: 3rem;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="sub-container">
+
+            <div class="box">
+                <p>Hours</p>
+                <h1 id="hours">0</h1>
+            </div>
+            <h1 class="dot">:</h1>
+
+            <div class="box">
+                <p>Minutes</p>
+                <h1 id="minutes">0</h1>
+            </div>
+            <h1 class="dot">:</h1>
+            <div class="box">
+                <p>Seconds</p>
+                <h1 id="seconds">0</h1>
+            </div>
+
+        </div>
+    </div>
+    </div>
+    <script>
+        const hourtag = document.getElementById('hours')
+        const minutetag = document.getElementById('minutes')
+        const secondtag = document.getElementById('seconds')
+
+        let secondsTime = 0;
+        let minutesTime = 0;
+        let hoursTime = 0;
+
+        function timeChange() {
+            secondsTime++;
+
+            if (secondsTime >= 60) {
+                secondsTime = 0;
+                minutesTime++
+            }
+            if (minutesTime >= 60) {
+                minutesTime = 0;
+                hoursTime++
+            }
+            if (hoursTime >= 24) {
+                hoursTime = 0;
+            }
+            secondtag.textContent = secondsTime;
+            minutetag.textContent = minutesTime;
+            hourtag.textContent = hoursTime;
+        }
+        setInterval(timeChange, 1000)
+    </script>
+</body>
+
+</html>

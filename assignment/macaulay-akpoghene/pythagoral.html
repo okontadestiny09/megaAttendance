@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>triangle</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+  <ul class="triangle">
+    <li id="bottom-line"></li>
+    <li id="left-line"></li>
+    <li id="hypotenuse-line"></li>
+
+    <div id="result">?</div>
+  </ul>
+
+  <div class="control">
+    <input id="opposite" type="number" placeholder="Opposite">
+    <input id="hypotenuse" type="number" placeholder="Hypotenuse">
+
+    <button onclick="calculate()">Calculate</button>
+  </div>
+
+</div>
+
+<script>
+function calculate() {
+  let opposite = document.getElementById("opposite").value;
+  let hypotenuse = document.getElementById("hypotenuse").value;
+
+  opposite = Number(opposite);
+  hypotenuse = Number(hypotenuse);
+
+  let adjacent = Math.sqrt((hypotenuse * hypotenuse) - (opposite * opposite));
+
+  document.getElementById("result").innerText = adjacent;
+}
+</script>
+
+</body>
+</html>

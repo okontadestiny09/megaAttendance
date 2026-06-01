@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genotype Detector</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="calculator">
+            <h2>This site can check for the compatability of two genotype</h2>
+            <h3>Pick a genotype from each section and match</h3>
+            <div class="calc">
+                <div class="box">
+                    <p>Pick Partner 1 Genotype</p>
+                    <h4 id="firstText"></h4>
+                    <button onclick="aaCheckOne()">AA</button>
+                    <button onclick="asCheckOne()">AS</button>
+                    <button onclick="ssCheckOne()">SS</button>
+
+
+                </div>
+                <div class="box">
+                    <p>Pick Partner 2 Genotype</p>
+                    <h4 id="secondText"></h4>
+                    <button onclick="aaCheckTwo()">AA</button>
+                    <button onclick="asCheckTwo()">AS</button>
+                    <button onclick="ssCheckTwo()">SS</button>
+
+                </div>
+            </div>
+            <div class="compatability">
+                <button onclick="checkTest()">Check Compatablity</button>
+                <h4 id="compatabilityTest"></h4>
+            </div>
+        </div>
+    </div>
+    <script>
+        let firstAnswer = null;
+        let secondAnswer = null;
+        function aaCheckOne() {
+            firstAnswer = "AA"
+            document.getElementById("firstText").textContent = "AA";
+        }
+        function asCheckOne() {
+            firstAnswer = "AS"
+            document.getElementById("firstText").textContent = "AS";
+        }
+        function ssCheckOne() {
+            firstAnswer = "SS"
+            document.getElementById("firstText").textContent = "SS";
+        }
+        function aaCheckTwo() {
+            secondAnswer = "AA"
+            document.getElementById("secondText").textContent = "AA";
+        }
+        function asCheckTwo() {
+            secondAnswer = "AS"
+            document.getElementById("secondText").textContent = "AS";
+        }
+        function ssCheckTwo() {
+            secondAnswer = "SS"
+            document.getElementById("secondText").textContent = "SS";
+        }
+        function checkTest() {
+            const compatabilityCheck = document.getElementById("compatabilityTest")
+            const checkTest = compatabilityCheck.value;
+            if ((firstAnswer.includes("S")) && (secondAnswer.includes("S"))) {
+                document.getElementById("compatabilityTest").textContent = "The two partners are not compatable";
+            } else {
+                document.getElementById("compatabilityTest").textContent = "The two partners are compatable";
+            }
+        }
+
+    </script>
+</body>
+
+</html>

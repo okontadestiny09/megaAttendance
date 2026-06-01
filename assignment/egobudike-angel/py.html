@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="fontawesome/css/all.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 70vh;
+        }
+
+        .triangle {
+            width: 0;
+            height: 0;
+            border-right: 250px solid blue;
+            border-bottom: 300px solid transparent;
+            transform: rotate(90deg);
+        }
+
+        .opposite {
+            margin-left: 30px;
+        }
+
+        .adjacent {
+            margin-top: 280px;
+            position: absolute;
+        }
+
+        .hypotenuse {
+            position: relative;
+        }
+
+        .btn {
+            margin-top: 350px;
+            position: absolute;
+        }
+
+        .result-container {
+            display: flex;
+            justify-content: center;
+            width: 100vw;
+            position: absolute;
+        }
+
+        #result {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Pythagoras Calculator</h1>
+    <div class="container">
+        <span class="hypotenuse"><input type="number" step="any" placeholder="hypotenuse side" id="hypotenuse"></span>
+        <div class="triangle"></div>
+        <span class="opposite"><input type="number" step="any" placeholder="opposite side" id="opposite"></span>
+        <span class="adjacent"><input type="number" step="any" placeholder="adjacent side" id="adjacent"></span>
+        <button class="btn" onclick="calculate()">Calculate</button>
+    </div>
+    <div class="result-container">
+        <div id="result"></div>
+    </div>
+    <script>
+        function calculate() {
+            const hypotenuse = document.getElementById('hypotenuse');
+            const opposite = document.getElementById('opposite');
+            const adjacent = document.getElementById('adjacent');
+            const result = document.getElementById('result');
+
+            const hypotenuse_value = Number(hypotenuse.value);
+            const opposite_value = Number(opposite.value);
+            const adjacent_value = Number(adjacent.value);
+
+            if (hypotenuse.value === "") {
+                hypotenuse.value = Math.sqrt(opposite_value ** 2 + adjacent_value ** 2)
+                result.textContent = "Hypotenuse is = " + Number(hypotenuse.value).toFixed(1);
+            }
+            else if (opposite.value === "") {
+                opposite.value = Math.sqrt(hypotenuse_value ** 2 - adjacent_value ** 2)
+                result.textContent = "Opposite is = " + Number(opposite.value).toFixed(1);
+
+            }
+            else if (adjacent.value === "") {
+                adjacent.value = Math.sqrt(hypotenuse_value ** 2 - opposite_value ** 2)
+                result.textContent = "Adjacent is = " + Number(adjacent.value).toFixed(1);
+
+            }
+            else {
+                result.textContent = "One input field needs to be left empty to enable calculation";
+            }
+        }
+    </script>
+</body>
+
+</html>

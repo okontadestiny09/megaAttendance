@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genotype Calculator</title>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        .container {
+            width: 30%;
+            height: auto;
+            border-radius: 10%;
+            background-color: blue;
+            padding: 1rem;
+            color: white;
+        }
+
+        select {
+            padding: 0.4rem;
+            margin-bottom: 0.8rem;
+            width: 87%;
+        }
+
+        button {
+            width: 87%;
+            padding: 0.4rem;
+            margin-top: 0.8rem;
+            margin-bottom: 0.8rem;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.55);
+            cursor: pointer;
+            border: none;
+        }
+
+        #result {
+            margin: 0.9rem 0;
+            font-size: 19px;
+            line-height: 1.8;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Genotype Calculator</h1>
+        <div>
+            <h3>First Parent: </h3>
+            <select id="firstGenotype">
+
+                <option value="" selected disabled>
+                    Select First Genotype
+                </option>
+
+                <option value="AA">AA</option>
+                <option value="AS">AS</option>
+                <option value="SS">SS</option>
+
+            </select>
+        </div>
+
+        <div>
+            <h3>Second Parent: </h3>
+            <select id="secondGenotype">
+
+                <option value="" selected disabled>
+                    Select Second Genotype
+                </option>
+
+                <option value="AA">AA</option>
+                <option value="AS">AS</option>
+                <option value="SS">SS</option>
+
+            </select>
+        </div>
+        <button onclick="checkGenotype()">
+            Check Compatibility
+        </button>
+
+        <div id="result"></div>
+
+    </div>
+
+    <script>
+
+        function checkGenotype() {
+
+            const firstGenotype =
+                document.getElementById('firstGenotype');
+
+            const secondGenotype =
+                document.getElementById('secondGenotype');
+
+            const result =
+                document.getElementById('result');
+
+            let firstGenotypeValue =
+                firstGenotype.value;
+
+            let secondGenotypeValue =
+                secondGenotype.value;
+
+            let genotypeAnswer =
+                firstGenotypeValue + secondGenotypeValue;
+
+            let genotypeResult = {
+
+                "AAAA": {
+                    advice: "Highly Recommended",
+                    children: "100% AA"
+                },
+
+                "AAAS": {
+                    advice: "Recommended",
+                    children: "50% AA, 50% AS"
+                },
+
+                "ASAA": {
+                    advice: "Recommended",
+                    children: "50% AA, 50% AS"
+                },
+
+                "AASS": {
+                    advice: "Acceptable With Proper Counseling",
+                    children: "100% AS"
+                },
+
+                "SSAA": {
+                    advice: "Acceptable With Proper Counseling",
+                    children: "100% AS"
+                },
+
+                "ASAS": {
+                    advice: "Not Recommended",
+                    children: "25% AA, 50% AS, 25% SS"
+                },
+
+                "ASSS": {
+                    advice: "Strongly Discouraged",
+                    children: "50% AS, 50% SS"
+                },
+
+                "SSAS": {
+                    advice: "Strongly Discouraged",
+                    children: "50% AS, 50% SS"
+                },
+
+                "SSSS": {
+                    advice: "Extremely Risky",
+                    children: "100% SS"
+                }
+
+            };
+
+            let finalResult =
+                genotypeResult[genotypeAnswer];
+
+            result.innerHTML =
+                "Advice: " + finalResult.advice +
+                "<br>" +
+                "Possible Children: " +
+                finalResult.children;
+
+        }
+
+    </script>
+
+</body>
+
+</html>

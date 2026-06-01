@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" placeholder="Body Weight" id="weight">
+    <input type="text" placeholder="Body height" id="height">
+    <button onclick="checkBodySize()">Check</button>
+
+    <h1 id="message"></h1>
+    <script>
+        console.log("hi");
+
+
+
+        function checkBodySize() {
+            const message = document.getElementById('message');
+            const weight = document.getElementById('weight');
+            const height = document.getElementById('height');
+
+            const weight_value = Number(weight.value);
+            const height_value = Number(height.value);
+
+            const BMI = weight_value / (Math.pow(height_value, 2));
+
+            // UNDER WEIGHT
+            // NORMAL 
+            // OVER W
+            // OBESE
+            if (BMI >= 30) {
+                message.textContent = "Obese:" + BMI;
+            } else if (BMI >= 25 && BMI <= 29.9) {
+                message.textContent = "Overweight:" + BMI;
+            }
+            else if (BMI >= 18.5 && BMI < 24.5) {
+                message.textContent = "Normal:" + BMI;
+            } else {
+                message.textContent = "Under weight:" + BMI;
+            }
+
+        }
+
+
+    </script>
+</body>
+
+</html>
