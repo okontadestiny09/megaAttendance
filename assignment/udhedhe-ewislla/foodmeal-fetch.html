@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Menu</title>
+</head>
+<link rel="stylesheet" href="/bootstrap/bootstrap.css">
+
+<body>
+
+    <h1>Food Menu</h1>
+    <div id="mealContainer" class="p-3">
+
+    </div>
+
+    <script>
+        const mealContainer = document.querySelector('#mealContainer')
+        const mealStored = localStorage.getItem('stored')
+
+        if (mealStored) {
+
+            meals = JSON.parse(mealStored);
+
+            meals.map((meal) => {
+                mealContainer.innerHTML += `
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+            <img src="${meal.strCategoryThumb}" class="card-img-top" alt="${meal.strCategory}">
+            <div class="card-body text-center">
+                <h5 class="card-title">${meal.strCategory}</h5>
+                <p class="card-text small text-muted">${meal.strCategoryDescription.substring(0, 100)}...</p>
+            </div>
+        </div>
+    </div>
+`;
+            });
+        } else {
+            fetch('https://www.themealdb.com/api/json/v1/1/categories.php').then(
+                response => response.json()).then(data => {
+                    localStorage.setItem('stored', JSON.stringify(data.categories));
+
+                    data.categories.forEach((meal) => {
+                        // Inside your loop
+                        mealContainer.innerHTML += `
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+            <img src="${meal.strCategoryThumb}" class="card-img-top" alt="${meal.strCategory}">
+            <div class="card-body text-center">
+                <h5 class="card-title">${meal.strCategory}</h5>
+                <p class="card-text small text-muted">${meal.strCategoryDescription.substring(0, 100)}...</p>
+            </div>
+        </div>
+    </div>
+`;
+                    });
+                }).catch(error => {
+                    console.log(error)
+                })
+        }
+
+
+    </script>
+</body>
+
+</html>

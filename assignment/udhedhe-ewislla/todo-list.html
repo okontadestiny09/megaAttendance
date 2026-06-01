@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <style>
+        :root {
+            --brand-navy: #062A39;
+            --brand-cyan: #00B4D5;
+            --brand-white: #FAFAFA;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f4f8;
+            min-height: 100vh;
+            font-family: system-ui, sans-serif;
+        }
+
+        .container {
+            width: 300px;
+            height: 400px;
+            background: var(--brand-navy);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-section {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 20px;
+            flex-shrink: 0;
+        }
+
+        input {
+            flex-grow: 1;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        button#add-task {
+            background-color: var(--brand-cyan);
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: var(--brand-white);
+        }
+
+        .display-task {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .task-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #00b5d52c;
+            color: var(--brand-white);
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            word-break: break-all;
+        }
+
+        .delete-btn {
+            background: #ff4d4d;
+            border: none;
+            color: white;
+            padding: 5px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-left: 10px;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <section class="input-section">
+            <input type="text" placeholder="Enter Task" id="input-task" />
+            <button id="add-task">Add</button>
+        </section>
+
+        <div class="display-task" id="display"></div>
+    </div>
+
+    <script>
+        const addBtn = document.querySelector('#add-task');
+        const display = document.querySelector('#display');
+        const inputField = document.querySelector('#input-task');
+
+        addBtn.addEventListener('click', () => {
+            const taskText = inputField.value;
+            if (taskText.trim() === "") return;
+
+            const taskWrapper = document.createElement('div');
+            taskWrapper.classList.add('task-container');
+
+            const taskContent = document.createElement('span');
+            taskContent.textContent = taskText;
+
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = 'Delete';
+            deleteBtn.classList.add('delete-btn');
+
+            deleteBtn.addEventListener('click', () => {
+                taskWrapper.remove();
+            });
+
+            taskWrapper.appendChild(taskContent);
+            taskWrapper.appendChild(deleteBtn);
+            display.appendChild(taskWrapper);
+
+            inputField.value = '';
+        });
+    </script>
+</body>
+
+</html>
