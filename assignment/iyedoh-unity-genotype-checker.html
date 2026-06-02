@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Genotype Checker</title>
+
+  <style>
+
+    body{
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+    }
+
+    input{
+      width: 220px;
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+    }
+
+    button{
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #result{
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h2>Genotype Compatibility Checker</h2>
+
+  <input type="text" id="genotype1" placeholder="Enter first genotype">
+
+  <br>
+
+  <input type="text" id="genotype2" placeholder="Enter second genotype">
+
+  <br>
+
+  <button onclick="checkCompatibility()">
+    Check
+  </button>
+
+  <div id="result"></div>
+
+  <script>
+
+    function checkCompatibility(){
+
+      let genotype1 = document.getElementById("genotype1").value.toUpperCase();
+
+      let genotype2 = document.getElementById("genotype2").value.toUpperCase();
+
+      let result = document.getElementById("result");
+
+      let validGenotypes = ["AA", "AS", "SS"];
+
+      if(
+        !validGenotypes.includes(genotype1) ||
+        !validGenotypes.includes(genotype2)
+      ){
+
+        result.innerHTML = "Only AA, AS and SS are allowed.";
+
+        return;
+      }
+
+      if(genotype1 === "SS" && genotype2 === "SS"){
+
+        result.innerHTML = "Not compatible.";
+
+      }
+
+      else if(genotype1 === "AS" && genotype2 === "AS"){
+
+        result.innerHTML = "Compatible but there is a risk of SS child.";
+
+      }
+
+      else if(
+        (genotype1 === "AS" && genotype2 === "SS") ||
+        (genotype1 === "SS" && genotype2 === "AS")
+      ){
+
+        result.innerHTML = "Not advisable.";
+
+      }
+
+      else{
+
+        result.innerHTML = "Compatible.";
+
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>
