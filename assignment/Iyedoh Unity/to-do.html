@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Todo UI</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #222;
+            color: white;
+            text-align: center;
+        }
+
+        input {
+            padding: 10px;
+            width: 200px;
+        }
+
+        button {
+            padding: 10px;
+            background: green;
+            border: none;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: #444;
+            margin: 10px;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .done {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>My Todo UI</h1>
+
+    <input type="text" id="taskInput" placeholder="Enter task">
+    <button onclick="addTask()">Add</button>
+
+    <ul id="list"></ul>
+
+    <script>
+        const list = document.getElementById("list");
+
+        // Load tasks when page opens
+        window.onload = function () {
+            showTasks();
+        };
+
+        // Add new task
+        function addTask() {
+            const input = document.getElementById("taskInput");
+            const task = input.value;
+
+            if (task === "") return;
+
+            let tasks = getTasks();
+
+            tasks.push({ text: task, done: false });
+
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+
+            input.value = "";
+            showTasks();
+        }
+
+        // Get tasks from storage
+        function getTasks() {
+            return JSON.parse(localStorage.getItem("tasks")) || [];
+        }
+
+        // Show tasks on screen
+        function showTasks() {
+            const tasks = getTasks();
+            list.innerHTML = "";
+
+            tasks.forEach((t, i) => {
+                list.innerHTML += `
+                <li>
+                    <span onclick="toggle(${i})" class="${t.done ? 'done' : ''}">
+                        ${t.text}
+                    </span>
+                    <button onclick="deleteTask(${i})">❌</button>
+                </li>
+            `;
+            });
+        }
+
+        // Mark as done
+        function toggle(index) {
+            let tasks = getTasks();
+
+            tasks[index].done = !tasks[index].done;
+
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+            showTasks();
+        }
+
+        // Delete task
+        function deleteTask(index) {
+            let tasks = getTasks();
+
+            tasks.splice(index, 1);
+
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+            showTasks();
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gourmet Menu</title>
+    <link rel="stylesheet" href="/bootstrap/bootstrap.css">
+</head>
+
+<body>
+
+    <header class="container mt-4">
+        <h1>Our Kitchen Offerings</h1>
+    </header>
+
+    <main id="menuGrid" class="container row g-4 mt-2">
+    </main>
+
+    <script>
+        const menuGrid = document.querySelector('#menuGrid');
+        const STORAGE_KEY = 'food_menu_data';
+
+        // Function to build and display cards
+        const renderMeals = (data) => {
+            menuGrid.innerHTML = ''; // Clear current content
+            data.forEach(item => {
+                const col = document.createElement('div');
+                col.className = 'col-md-4';
+                col.innerHTML = `
+                    <div class="card border-0 shadow-lg h-100">
+                        <img src="${item.strCategoryThumb}" class="card-img-top" alt="${item.strCategory}">
+                        <div class="card-body">
+                            <h4 class="card-title text-primary">${item.strCategory}</h4>
+                            <p class="card-text text-secondary">${item.strCategoryDescription.slice(0, 80)}...</p>
+                        </div>
+                    </div>
+                `;
+                menuGrid.appendChild(col);
+            });
+        };
+
+        const init = async () => {
+            const cached = localStorage.getItem(STORAGE_KEY);
+
+            if (cached) {
+                renderMeals(JSON.parse(cached));
+            } else {
+                try {
+                    const response = await fetch('https://www.themealdb.com/api/json/v1/1/categories.php');
+                    const { categories } = await response.json();
+
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(categories));
+                    renderMeals(categories);
+                } catch (err) {
+                    console.error("Failed to load menu:", err);
+                    menuGrid.innerHTML = `<p class="text-danger">Unable to load menu at this time.</p>`;
+                }
+            }
+        };
+
+        init();
+    </script>
+</body>
+
+</html>

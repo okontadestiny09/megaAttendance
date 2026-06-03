@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizer</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', sans-serif;
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+        }
+
+        .board {
+            width: 320px;
+            height: 420px;
+            background: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        .controls {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        #submit {
+            background: #4a6cf7;
+            color: white;
+            border: none;
+            padding: 0 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #list-area {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .item-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #f1f3f5;
+        }
+
+        .remove-btn {
+            background: transparent;
+            color: #ff6b6b;
+            border: 1px solid #ff6b6b;
+            padding: 4px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="board">
+        <div class="controls">
+            <input type="text" id="entry" placeholder="Add activity...">
+            <button id="submit">Save</button>
+        </div>
+        <div id="list-area"></div>
+    </div>
+
+    <script>
+        const btn = document.getElementById('submit');
+        const box = document.getElementById('entry');
+        const output = document.getElementById('list-area');
+
+        btn.addEventListener('click', () => {
+            const val = box.value.trim();
+            if (!val) return;
+
+            const entry = document.createElement('div');
+            entry.className = 'item-row';
+            
+            entry.innerHTML = `
+                <span>${val}</span>
+                <button class="remove-btn">Discard</button>
+            `;
+
+            entry.querySelector('.remove-btn').onclick = () => entry.remove();
+            
+            output.appendChild(entry);
+            box.value = '';
+        });
+    </script>
+</body>
+</html>

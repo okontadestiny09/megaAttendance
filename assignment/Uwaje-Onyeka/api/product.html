@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./font-awesome/css/all.css">
+</head>
+
+<body>
+    <a href="./index.html" class="backBtn">← Back to Products</a>
+    <div id="productDetails" class="productPage"></div>
+
+    <script>
+        let detailsDiv = document.getElementById("productDetails");
+        let id = localStorage.getItem("productId");
+        let products = JSON.parse(localStorage.getItem("products"));
+
+        if (!products) {
+            detailsDiv.innerHTML = "No product data found. Go back and reload the products page.";
+            detailsDiv.className = "errorBox";
+        } else {
+            let product = products.find(function (p) { return p.id == id; });
+
+            if (product) {
+                let img = document.createElement("img");
+                img.src = product.images[0];
+                img.className = "detailImg";
+                detailsDiv.appendChild(img);
+
+                let title = document.createElement("h2");
+                title.innerHTML = product.title;
+                detailsDiv.appendChild(title);
+
+                let price = document.createElement("p");
+                price.innerHTML = "Price: $" + product.price;
+                detailsDiv.appendChild(price);
+
+                let category = document.createElement("p");
+                category.innerHTML = "Category: " + product.category;
+                detailsDiv.appendChild(category);
+
+                let brand = document.createElement("p");
+                brand.innerHTML = "Brand: " + product.brand;
+                detailsDiv.appendChild(brand);
+
+                let desc = document.createElement("p");
+                desc.innerHTML = "Description: " + product.description;
+                detailsDiv.appendChild(desc);
+
+                let rating = document.createElement("p");
+                rating.innerHTML = "Rating: " + product.rating;
+                detailsDiv.appendChild(rating);
+
+                let stock = document.createElement("p");
+                stock.innerHTML = "Stock: " + product.stock;
+                detailsDiv.appendChild(stock);
+
+                let availability = document.createElement("p");
+                availability.innerHTML = "Availability: " + product.availabilityStatus;
+                detailsDiv.appendChild(availability);
+            } else {
+                detailsDiv.innerHTML = "Product not found";
+                detailsDiv.className = "errorBox";
+            }
+        }
+    </script>
+</body>
+
+</html>
