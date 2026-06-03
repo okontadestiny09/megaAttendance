@@ -70,21 +70,32 @@ $datas = [
  [
         "matric_no" => "CMP2307604",
         "name" => "Otiti Chigoziem",
+        "department" => "Software Engineering",
+        "faculty" => "Computing",
+        "email" => "otitichigoziem@gmail.com",
+        "place_of_it" => "Alihame",
+         "username" => "Otiti",
+        "password" => "Otiti123", 
+ ],
      [
         "matric_no" => "CMP2307462",
         "name" => "Uwaje Peter Onyekachukwu",
-        "department" => "Computer Science",    
-    ],
-
-    [
-        "matric_no" => "CMP2307621",
-        "name" => "Anthony Ruth Chigozie",
-        "department" => "Software Engineering",    
+        "department" => "Computer Science", 
+         "faculty" => "Computing",
+        "email" => "uwajepeter@gmail.com",
+        "place_of_it" => "Alihame",
+         "username" => "Uwaje",
+        "password" => "Uwaje123",   
     ],
     [
         "matric_no" => "CMP2307600",
         "name" => "Iyedoh Unity Oghenerukevwe",
-        "department" => "Software Engineering",    
+        "department" => "Software Engineering",  
+         "faculty" => "Computing",
+        "email" => "iyedohunity@gmail.com",
+        "place_of_it" => "Alihame",
+         "username" => "Iyedoh",
+        "password" => "Iyedoh123",  
     ],
     //  add your arrays here
 ];
