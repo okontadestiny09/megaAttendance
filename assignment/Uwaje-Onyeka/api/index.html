@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>api</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./font-awesome/css/all.css">
+</head>
+
+<body>
+    <div id="loader">
+        <p>Please Wait,your page would soon be ready</p>
+        <i class="fa fa-spinner fa-5x" id="spinIcon" aria-hidden="true"></i>
+    </div>
+    <h1 id="products">Products</h1>
+    <div class="controls">
+        <input type="text" id="searchInput" placeholder="Search by name">
+        <button id="searchBtn">Search</button>
+        <button id="sortNameAsc">Name A-Z</button>
+        <button id="sortNameDesc">Name Z-A</button>
+        <button id="sortAsc">Price Low-High</button>
+        <button id="sortDesc">Price High-Low</button>
+        <button id="reset">Reset</button>
+    </div>
+    <ul id="softwareList"></ul>
+
+    <script>
+        let loader = document.getElementById("loader");
+        let ul = document.getElementById("softwareList");
+        let searchInput = document.getElementById("searchInput");
+        let searchBtn = document.getElementById("searchBtn");
+        let sortNameAscBtn = document.getElementById("sortNameAsc");
+        let sortNameDescBtn = document.getElementById("sortNameDesc");
+        let sortAscBtn = document.getElementById("sortAsc");
+        let sortDescBtn = document.getElementById("sortDesc");
+        let resetBtn = document.getElementById("reset");
+        let productsData = [];
+        let originalData = [];
+
+        let displayProducts = function (data) {
+            ul.innerHTML = "";
+            if (data.length === 0) {
+                let noResult = document.createElement("li");
+                noResult.textContent = "No products found";
+                noResult.className = "errorBox";
+                ul.appendChild(noResult);
+                return;
+            }
+            data.forEach(function (product) {
+                let li = document.createElement("li");
+                li.className = "productBox";
+
+                let title = document.createElement("a");
+                title.textContent = product.title;
+                title.href = "product.html";
+                title.className = "productTitle";
+                title.addEventListener("click", function () {
+                    localStorage.setItem("productId", product.id);
+                });
+                li.appendChild(title);
+
+                let img = document.createElement("img");
+                img.src = product.images[0];
+                li.appendChild(img);
+
+                let id = document.createElement("p");
+                id.textContent = "ID: " + product.id;
+                li.appendChild(id);
+
+                let category = document.createElement("p");
+                category.textContent = "Category: " + product.category;
+                li.appendChild(category);
+
+                let price = document.createElement("p");
+                price.textContent = "$" + product.price;
+                price.className = "price";
+                li.appendChild(price);
+
+                let description = document.createElement("p");
+                description.textContent = product.description;
+                description.className = "desc";
+                li.appendChild(description);
+
+                let availabilityStatus = document.createElement("p");
+                availabilityStatus.textContent = product.availabilityStatus;
+                availabilityStatus.className = "status";
+                li.appendChild(availabilityStatus);
+
+                let weight = document.createElement("p");
+                weight.textContent = "Weight: " + product.weight + "g";
+                li.appendChild(weight);
+
+                ul.appendChild(li);
+            });
+        }
+
+        let loadProducts = function () {
+            let cached = localStorage.getItem("products");
+
+            if (cached) {
+                productsData = JSON.parse(cached);
+                originalData = productsData.slice();
+                loader.style.display = "none";
+                displayProducts(productsData);
+                return;
+            }
+
+            fetch("https://dummyjson.com/products")
+                .then(function (response) { return response.json(); })
+                .then(function (data) {
+                    productsData = data.products;
+                    originalData = data.products.slice();
+                    localStorage.setItem("products", JSON.stringify(productsData));
+                    loader.style.display = "none";
+                    displayProducts(productsData);
+                })
+                .catch(function (error) {
+                    console.log("Fetch error:", error);
+                    loader.style.display = "none";
+                    let errorLi = document.createElement("li");
+                    errorLi.textContent = "Error: something has gone wrong, please check your internet connection";
+                    errorLi.className = "errorBox";
+                    ul.appendChild(errorLi);
+                });
+        }
+
+        loadProducts();
+
+        searchBtn.addEventListener("click", function () {
+            let query = searchInput.value.toLowerCase().trim();
+            let filtered = productsData.filter(function (p) { return p.title.toLowerCase().indexOf(query) !== -1; });
+            displayProducts(filtered);
+        });
+
+        searchInput.addEventListener("keyup", function (e) {
+            if (e.key === "Enter") {
+                searchBtn.click();
+            }
+        });
+
+        sortNameAscBtn.addEventListener("click", function () {
+            let sorted = productsData.slice().sort(function (a, b) { return a.title.localeCompare(b.title); });
+            displayProducts(sorted);
+        });
+
+        sortNameDescBtn.addEventListener("click", function () {
+            let sorted = productsData.slice().sort(function (a, b) { return b.title.localeCompare(a.title); });
+            displayProducts(sorted);
+        });
+
+        sortAscBtn.addEventListener("click", function () {
+            let sorted = productsData.slice().sort(function (a, b) { return a.price - b.price; });
+            displayProducts(sorted);
+        });
+
+        sortDescBtn.addEventListener("click", function () {
+            let sorted = productsData.slice().sort(function (a, b) { return b.price - a.price; });
+            displayProducts(sorted);
+        });
+
+        resetBtn.addEventListener("click", function () {
+            searchInput.value = "";
+            displayProducts(originalData);
+        });
+    </script>
+</body>
+
+</html>

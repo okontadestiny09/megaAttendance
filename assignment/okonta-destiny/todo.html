@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo App</title>
+
+  <link rel="stylesheet" href="../../fontawesome/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: royalblue;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 40px 15px;
+    }
+
+    .container {
+      background: white;
+      width: 100%;
+      max-width: 500px;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px black;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: white;
+      background: royalblue;
+      padding: 10px;
+      border-radius: 6px;
+    }
+
+    .input-box {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    input {
+      flex: 1;
+      padding: 12px;
+      border: 2px solid royalblue;
+      outline: none;
+      border-radius: 6px;
+    }
+
+    button {
+      background: royalblue;
+      color: white;
+      border: none;
+      padding: 12px 15px;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+
+    .delete-btn {
+      width: 100px;
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      background: royalblue;
+      color: white;
+      border: none;
+      padding: 12px 15px;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+
+    .todo {
+      display: flex;
+      justify-content: space-between;
+      background: lightcyan;
+      margin-top: 10px;
+      border-radius: 6px;
+      overflow: hidden;
+      align-items: stretch;
+    }
+
+    .todo p {
+      margin: 0;
+      padding: 12px;
+      flex: 1;
+      word-break: break-word;
+    }
+
+    .todo button {
+      background: royalblue;
+      width: 50px;
+      border: none;
+      color: white;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    @media(max-width:500px) {
+      .input-box {
+        flex-direction: column;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>My Todo List</h1>
+
+    <div class="input-box">
+      <input id="todo-input" placeholder="Enter task">
+      <button onclick="addTodo()">Add</button>
+    </div>
+
+    <div id="todo-list"></div>
+
+  </div>
+
+  <script>
+
+    let todos = JSON.parse(localStorage.getItem("todos")) || [];
+
+    const input = document.getElementById("todo-input");
+    const list = document.getElementById("todo-list");
+
+    function save() {
+      localStorage.setItem("todos", JSON.stringify(todos));
+    }
+
+    function showTodos() {
+      list.innerHTML = "";
+
+      todos.forEach((t, i) => {
+        const div = document.createElement("div");
+        div.className = "todo";
+
+        const p = document.createElement("p");
+        p.textContent = t;
+
+        const btn = document.createElement("button");
+        btn.classList.add("delete-btn")
+        btn.innerHTML = '<i class="fa-solid fa-trash"><i>';
+
+        btn.onclick = () => {
+          todos.splice(i, 1);
+          save();
+          showTodos();
+        };
+
+        div.append(p, btn);
+        list.append(div);
+      });
+    }
+
+    function addTodo() {
+      if (!input.value.trim()) return alert("Enter a task");
+
+      todos.unshift(input.value.trim());
+      input.value = "";
+
+      save();
+      showTodos();
+    }
+
+    showTodos();
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>pythagoras calculator</title>
+</head>
+
+<body>
+
+    <h2>find opposite side of triangle/
+
+    </h2>
+    <label>enter hypotenuse:</label>
+    <input type="number" id="hypo">
+
+    <br><br>
+    <label>enter adjacent side:</label>
+    <input type="number" id="adjacent">
+
+    <br><br>
+
+    <button onclick="findopposite()">
+        calculate
+    </button>
+
+    <h3 id="answer">
+    </h3>
+
+    <script>
+
+        function findopposite() {
+            const x = document.getElementById("adjacent")
+            const y = document.getElementById("hypo")
+            const x_value = Number(x.value)
+            const y_value = Number(y.value)
+            let answer = Math.sqrt((y.value ** 2) - (x.value ** 2))
+            let real_answer = document.getElementById("answer")
+            real_answer.textContent = answer
+        }
+        // function findopposite() {
+        //     const x = document.getElementById("adjacent")
+        //     const y = document.getElementById("hypo")
+        //     const x_value = Number(x.value)
+        //     const y_value = Number(y.value)
+        //     let answer = Math.sqrt((y.value ** 2) - (x.value ** 2))
+        //     let real_answer = document.getElementById("answer")
+        //     real_answer.textcontent = answer
+        // }
+    </script>
+
+
+    </label>
+</body>
+
+</html>

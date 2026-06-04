@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Genotype Checker</title>
+
+    <style>
+
+        body{
+            background-color: lightgray;
+            text-align: center;
+        }
+
+        .container{
+            background-color: white;
+            width: 500px;
+            margin: auto;
+            margin-top: 50px;
+            padding: 20px;
+        }
+
+        button{
+            margin: 5px;
+            padding: 10px;
+        }
+
+        #result{
+            margin-top: 20px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>Genotype Compatibility Checker</h2>
+
+        <h3>Partner One</h3>
+
+        <p id="firstText"></p>
+
+        <button onclick="firstAA()">AA</button>
+        <button onclick="firstAS()">AS</button>
+        <button onclick="firstSS()">SS</button>
+
+        <h3>Partner Two</h3>
+
+        <p id="secondText"></p>
+
+        <button onclick="secondAA()">AA</button>
+        <button onclick="secondAS()">AS</button>
+        <button onclick="secondSS()">SS</button>
+
+        <br><br>
+
+        <button onclick="checkAnswer()">Check</button>
+
+        <h3 id="result"></h3>
+
+    </div>
+
+    <script>
+
+        let firstGenotype = "";
+        let secondGenotype = "";
+
+        function firstAA(){
+
+            firstGenotype = "AA";
+
+            document.getElementById("firstText").textContent = "AA";
+
+        }
+
+        function firstAS(){
+
+            firstGenotype = "AS";
+
+            document.getElementById("firstText").textContent = "AS";
+
+        }
+
+        function firstSS(){
+
+            firstGenotype = "SS";
+
+            document.getElementById("firstText").textContent = "SS";
+
+        }
+
+        function secondAA(){
+
+            secondGenotype = "AA";
+
+            document.getElementById("secondText").textContent = "AA";
+
+        }
+
+        function secondAS(){
+
+            secondGenotype = "AS";
+
+            document.getElementById("secondText").textContent = "AS";
+
+        }
+
+        function secondSS(){
+
+            secondGenotype = "SS";
+
+            document.getElementById("secondText").textContent = "SS";
+
+        }
+
+        function checkAnswer(){
+
+            if(firstGenotype.includes("S") && secondGenotype.includes("S")){
+
+                document.getElementById("result").textContent =
+                "Not Compatible";
+
+            }
+
+            else{
+
+                document.getElementById("result").textContent =
+                "Compatible";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>

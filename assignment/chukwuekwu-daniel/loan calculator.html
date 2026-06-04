@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>loan interest calculator</title>
+
+
+    
+</head>
+
+</body>
+
+      <h1>loan interest Calculator</h1>
+      
+       <label>Enter Loan Amount:</label>
+       <input type="number"id="Amount">
+       
+       <br><br>
+
+       <label>Enter Interest rate:</label>
+       <input type="number"id="Rate">
+
+       <br><br>
+
+        <label>Enter time (Years):</label>
+        <input type="number"id="Time">
+
+        <br><br>
+
+        <button onclick="calculateInterest()">
+            calculate Interest  
+        </button>
+    
+        <h2 id="answer"></h2>
+
+        <script>
+
+            function calculateInterest() {
+            
+                let amount=
+
+                document.getElementById("amount").value;
+
+                  let rate=
+
+              document.getElementById("rate") .value;
+
+                  let time=
+
+               document.getElementById("time") .value;  
+               
+                   
+                   let intetrest=
+                   (amount * rate * time) / 100;
+                   
+
+                   
+                   document.getElementById("answer").innerHTML=
+                   
+                      "loan interest= " + interest;
+            }
+
+            </script> 
+
+            <body>
+            </html>

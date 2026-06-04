@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-bg: #2563eb;
+      --blue-dark: #1e3a8a;
+      --blue-btn: #2a2fa8;
+      --blue-btn-hover: #1e2490;
+      --item-bg: #dbeafe;
+      --item-hover: #bfdbfe;
+      --white: #ffffff;
+      --text: #1e3a8a;
+      --placeholder: #93c5fd;
+      --danger: #2a2fa8;
+      --danger-hover: #1e1f80;
+      --radius: 10px;
+      --shadow: 0 8px 40px rgba(30,58,138,0.25);
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--blue-bg);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 32px 28px 36px;
+      width: 100%;
+      max-width: 520px;
+      box-shadow: var(--shadow);
+    }
+
+    /* ── INPUT ROW ── */
+    .input-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .todo-input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 2px solid #cbd5e1;
+      border-radius: var(--radius);
+      font-family: 'Nunito', sans-serif;
+      font-size: 15px;
+      color: #1e3a8a;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .todo-input::placeholder { color: var(--placeholder); }
+    .todo-input:focus { border-color: var(--blue-btn); }
+
+    .add-btn {
+      padding: 12px 22px;
+      background: var(--blue-btn);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius);
+      font-family: 'Nunito', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.18s, transform 0.1s;
+      white-space: nowrap;
+    }
+    .add-btn:hover { background: var(--blue-btn-hover); }
+    .add-btn:active { transform: scale(0.97); }
+
+    /* ── LIST ── */
+    #todoList {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .todo-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--item-bg);
+      border-radius: var(--radius);
+      padding: 14px 14px 14px 18px;
+      animation: slideIn 0.22s ease;
+      transition: background 0.15s;
+    }
+    .todo-item:hover { background: var(--item-hover); }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .todo-text {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--text);
+      flex: 1;
+      line-height: 1.4;
+      word-break: break-word;
+      padding-right: 10px;
+    }
+    .todo-text.done {
+      text-decoration: line-through;
+      opacity: 0.5;
+    }
+
+    .delete-btn {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      background: var(--danger);
+      border: none;
+      border-radius: 8px;
+      color: var(--white);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.18s, transform 0.1s;
+    }
+    .delete-btn:hover { background: var(--danger-hover); }
+    .delete-btn:active { transform: scale(0.93); }
+    .delete-btn svg { width: 16px; height: 16px; pointer-events: none; }
+
+    /* empty state */
+    .empty {
+      text-align: center;
+      color: #93c5fd;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 18px 0 4px;
+    }
+    </style>
+</head>
+<body>
+    <div class="card">
+    <div class="input-row">
+      <input class="todo-input" id="todoInput" type="text" placeholder="Add a new task…" maxlength="200">
+      <button class="add-btn" id="addBtn">Add</button>
+    </div>
+    <div id="todoList"></div>
+  </div>
+
+  <script>
+    const input   = document.getElementById("todoInput");
+    const addBtn  = document.getElementById("addBtn");
+    const list    = document.getElementById("todoList");
+
+    const STORAGE_KEY = "todos_v1";
+
+    function load() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+      catch { return []; }
+    }
+
+    function save(todos) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+    }
+
+    function render() {
+      const todos = load();
+      list.innerHTML = "";
+
+      if (todos.length === 0) {
+        list.innerHTML = `<p class="empty">No tasks yet — add one above!</p>`;
+        return;
+      }
+
+      todos.forEach((todo, i) => {
+        const item = document.createElement("div");
+        item.className = "todo-item";
+        item.innerHTML = `
+          <span class="todo-text${todo.done ? ' done' : ''}">${escHtml(todo.text)}</span>
+          <button class="delete-btn" aria-label="Delete task" data-index="${i}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="3 6 5 6 21 6"/>
+              <path d="M19 6l-1 14H6L5 6"/>
+              <path d="M10 11v6M14 11v6"/>
+              <path d="M9 6V4h6v2"/>
+            </svg>
+          </button>
+        `;
+
+        // toggle done on text click
+        item.querySelector(".todo-text").addEventListener("click", () => {
+          const todos = load();
+          todos[i].done = !todos[i].done;
+          save(todos);
+          render();
+        });
+
+        // delete
+        item.querySelector(".delete-btn").addEventListener("click", () => {
+          const todos = load();
+          todos.splice(i, 1);
+          save(todos);
+          render();
+        });
+
+        list.appendChild(item);
+      });
+    }
+
+    function addTodo() {
+      const text = input.value.trim();
+      if (!text) { input.focus(); return; }
+      const todos = load();
+      todos.push({ text, done: false });
+      save(todos);
+      input.value = "";
+      input.focus();
+      render();
+    }
+
+    function escHtml(str) {
+      return str.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+    }
+
+    addBtn.addEventListener("click", addTodo);
+    input.addEventListener("keydown", e => { if (e.key === "Enter") addTodo(); });
+
+    render();
+  </script>
+
+
+
+    
+</body>
+</html>

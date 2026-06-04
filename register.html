@@ -44,40 +44,33 @@
         <img src="/images/logo-dark.png" alt="" class="img-fluid mw-100">
       </div>
 
-      <form class="registration-form d-flex flex-column">
+      <form class="registration-form d-flex flex-column" method="POST" action="backend/register.php">
 
         <div class="info mb-3 form-floating">
-          <input type="text" class="form-control" id="fullname" placeholder="Full Name" required>
+          <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Full Name" required>
           <label for="fullname">Full Name</label>
         </div>
 
         <div class="info mb-3 form-floating">
-          <input type="text" class="form-control" id="matric" placeholder="Matric Number" required>
+          <input type="text" class="form-control" id="matric" name="matric" placeholder="Matric Number" required>
           <label for="matric">Matric Number</label>
         </div>
 
         <div class="info mb-3 form-floating">
-          <select class="form-select" id="dept" required>
-            <option value=""></option>
-            <option>Software Engineering</option>
-            <option>Computer Science</option>
-            <option>ICT</option>
-            <option>Cyber Security</option>
+          <select class="form-select" id="dept" name="dept" required>
+            <option value="">Select Department</option>
           </select>
           <label for="dept">Department</label>
         </div>
 
         <div class="info mb-3 form-floating">
-          <select class="form-select" id="faculty" required>
-            <option value=""></option>
-            <option>Faculty of Computing</option>
-            <option>Faculty of Engineering</option>
+          <select class="form-select" id="faculty" name="faculty" required>
+            <option value="">Select Faculty</option>
           </select>
           <label for="faculty">Faculty</label>
         </div>
-
         <div class="info mb-3 form-floating">
-          <select class="form-select" id="place-of-it" required>
+          <select class="form-select" id="place-of-it" name="place-of-it" required>
             <option value=""></option>
             <option>Alihame</option>
             <option>Town</option>
@@ -86,25 +79,54 @@
         </div>
 
         <div class="info mb-3 form-floating">
-          <input type="date" class="form-control" id="registration-date" placeholder="Date" required>
+          <input type="date" class="form-control" id="registration-date" name="registration-date" placeholder="Date" required>
           <label for="registration-date">Registration Date</label>
         </div>
 
         <div class="info mb-4 form-floating">
-          <input type="password" class="form-control" id="password" placeholder="Password" required>
+          <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
           <label for="password">Password</label>
         </div>
 
         <button type="submit" class="submit-btn btn w-100 py-2">
-          <a href="index.html">Register
-          </a>
-        </button>
+  Register
+</button>
 
       </form>
 
     </div>
   </div>
   </div>
+
+  <script>
+    // Load Departments
+    const deptSelect = document.getElementById("dept");
+
+    fetch("./backend/get_departments.php")
+      .then(response => response.json())
+      .then(departments => {
+        departments.forEach(dept => {
+          const option = document.createElement("option");
+          option.value = dept.id;
+          option.textContent = dept.name;
+          deptSelect.appendChild(option);
+        });
+      });
+
+    // Load Faculties
+    const facultySelect = document.getElementById("faculty");
+
+    fetch("./backend/get_faculties.php")
+      .then(response => response.json())
+      .then(faculties => {
+        faculties.forEach(faculty => {
+          const option = document.createElement("option");
+          option.value = faculty.id;
+          option.textContent = faculty.name;
+          facultySelect.appendChild(option);
+        });
+      });
+  </script>
 </body>
 
 </html>

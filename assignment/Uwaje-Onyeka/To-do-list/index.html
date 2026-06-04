@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do list</title>
+    <link rel="stylesheet" href="font-awesome/css/all.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div id="tDiv">
+            <p>To do list</p>
+            <div>
+                <input type="text" placeholder="Add a new task" id="input"><button id="addButton">Add</button>
+            </div>
+            <div id="toDoDiv"></div>
+        </div>
+    </div>
+    <script>
+        const toDoDiv = document.querySelector('#toDoDiv');
+        const input = document.querySelector('#input');
+        const button = document.querySelector('#addButton');
+        let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+        function saveTasks() {
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+
+        function displayTasks() {
+            toDoDiv.innerHTML = '';
+            tasks.forEach((task, i) => {
+                const taskElement = document.createElement('div');
+                taskElement.classList.add('toDoItem');
+                taskElement.textContent = task;
+
+                const deleteBtn = document.createElement('button');
+                deleteBtn.classList.add('deleteBtn');
+                deleteBtn.innerHTML = `<i class="fas fa-trash"></i>`;
+
+                deleteBtn.addEventListener('click', () => {
+                    tasks.splice(i, 1);
+                    saveTasks();
+                    displayTasks();
+                });
+
+                taskElement.appendChild(deleteBtn);
+                toDoDiv.appendChild(taskElement);
+            });
+        }
+
+        button.addEventListener('click', () => {
+            const task = input.value.trim();
+            if (task) {
+                tasks.push(task);
+                saveTasks();
+                displayTasks();
+                input.value = '';
+            }
+        });
+
+        displayTasks();
+    </script>
+</body>
+
+</html>

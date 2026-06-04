@@ -100,80 +100,8 @@
         <p class="mb-3 ps-4">This system was collaboratively designed and developed by students across multiple
             departments</p>
 
-        <div class="row g-4 mt-4">
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="card shadow-sm h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Otiti Chigoziem P.</h5>
-                        <p class="card-text">Software Engineering</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="card shadow-sm h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Anthony Ruth C.</h5>
-                        <p class="card-text">Software Engineering</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="card shadow-sm h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Ehiedu Goodluck</h5>
-                        <p class="card-text">Cyber Security</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="card shadow-sm h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Iyedoh Unity</h5>
-                        <p class="card-text">Software Engineering</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="card shadow-sm h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Okonta Miracle</h5>
-                        <p class="card-text">Software Engineering</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="card shadow-sm h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Boi Mercy</h5>
-                        <p class="card-text">Software Engineering</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="card shadow-sm h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Igbodi Miracle</h5>
-                        <p class="card-text">Software Engineering</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="card shadow-sm h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Audu Treasure</h5>
-                        <p class="card-text">Software Engineering</p>
-                    </div>
-                </div>
-            </div>
-
+        <div class="row g-4 mt-4" id="team-container">
         </div>
-
         <p class="mb-3 ps-4"><em>...and others (et al.) who contributed to the success of this project.</em></p>
         <div class="why-section py-4 mx-auto">
             <h1>Why MegaAttendance?</h1>
@@ -272,6 +200,29 @@
         </div>
     </footer>
     <script src="/bootstrap/bootstrap.bundle.js"></script>
+
+    <script>
+        fetch("backend/data.php")
+            .then(response => response.json())
+            .then(teamLeaders => {
+                const container = document.getElementById("team-container");
+
+                teamLeaders.forEach(member => {
+                    container.innerHTML += `
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <div class="card shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title">${member.name}</h5>
+              <p class="card-text">${member.department}</p>
+            </div>
+          </div>
+        </div>
+      `;
+                });
+            })
+            .catch(error => console.error(error));
+    </script>
+
 </body>
 
 </html>

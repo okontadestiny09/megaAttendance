@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe App</title>
+    <link rel="stylesheet" href="./font-awesome/css/all.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <div class="content-header">
+                <h2>Recipes</h2>
+                <a id="toggleButton">See all food</a>
+            </div>
+            <p class="subtitle">Tap any card to see ingredients and instructions</p>
+            <div class="recipes" id="recipes"></div>
+        </div>
+    </div>
+    <script>
+        const recipeContainer = document.getElementById("recipes");
+        const toggleButton = document.getElementById("toggleButton");
+        let allMeals = JSON.parse(localStorage.getItem("meals")) || [];
+        let showAllMeals = false;
+        function saveMeals() {
+            localStorage.setItem("meals", JSON.stringify(allMeals))
+        }
+        function getRatingStars() {
+            const rating = (4.5 + Math.random() * 0.5).toFixed(1);
+            const fullStars = Math.floor(rating);
+            let stars = "";
+            for (let starIndex = 0; starIndex < 5; starIndex++) {
+                if (starIndex < fullStars) {
+                    stars += '<i class="fa-solid fa-star"></i>'
+                } else {
+                    stars += '<i class="fa-regular fa-star"></i>'
+                }
+            }
+            return stars + rating
+        }
+        function renderMeals(meals) {
+            let mealsToShow;
+            if (showAllMeals) {
+                mealsToShow = meals
+            } else {
+                mealsToShow = meals.slice(0, 12)
+            }
+            let htmlContent = "";
+            for (let index = 0; index < mealsToShow.length; index++) {
+                const mealItem = mealsToShow[index];
+                htmlContent += `
+                    <div class="card" data-id="${mealItem.idMeal}">
+                        <img src="${mealItem.strMealThumb}" alt="${mealItem.strMeal}">
+                        <div class="card-content">
+                            <div class="recipe-title">${mealItem.strMeal}</div>
+                            <div class="rating">${getRatingStars()}</div>
+                        </div>
+                        <div class="details" id="details${mealItem.idMeal}"></div>
+                    </div>
+                `
+            }
+            recipeContainer.innerHTML = htmlContent;
+            document.querySelectorAll(".card").forEach(cardElement => {
+                cardElement.addEventListener("click", function () {
+                    toggleDetails(cardElement.dataset.id)
+                })
+            })
+        }
+        function toggleDetails(mealId) {
+            const detailDiv = document.getElementById("details" + mealId);
+            if (detailDiv.classList.contains("active")) {
+                detailDiv.classList.remove("active");
+                detailDiv.innerHTML = "";
+                return
+            }
+            document.querySelectorAll(".details.active").forEach(activeDetail => {
+                activeDetail.classList.remove("active");
+                activeDetail.innerHTML = ""
+            });
+            const selectedMeal = allMeals.find(meal => meal.idMeal === mealId);
+            let ingredientsList = "";
+            for (let ingredientIndex = 1; ingredientIndex <= 20; ingredientIndex++) {
+                const ingredientName = selectedMeal[`strIngredient${ingredientIndex}`];
+                const ingredientMeasure = selectedMeal[`strMeasure${ingredientIndex}`];
+                if (ingredientName && ingredientName.trim()) {
+                    ingredientsList += `<li>${ingredientMeasure} ${ingredientName}</li>`
+                }
+            }
+            detailDiv.innerHTML = `
+                <h4>Category: ${selectedMeal.strCategory} | Area: ${selectedMeal.strArea}</h4>
+                <h4>Ingredients</h4>
+                <ul>${ingredientsList}</ul>
+                <h4>Instructions</h4>
+                <p>${selectedMeal.strInstructions}</p>
+            `;
+            detailDiv.classList.add("active")
+        }
+        function loadInitialMeals() {
+            if (allMeals.length > 0) {
+                renderMeals(allMeals);
+                return
+            }
+            fetch("https://www.themealdb.com/api/json/v1/1/filter.php?c=Seafood")
+                .then(response => response.json())
+                .then(data => {
+                    const mealIds = data.meals.map(meal => meal.idMeal);
+                    let loadedCount = 0;
+                    for (let index = 0; index < mealIds.length; index++) {
+                        const mealId = mealIds[index];
+                        fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
+                            .then(mealResponse => mealResponse.json())
+                            .then(mealData => {
+                                allMeals.push(mealData.meals[0]);
+                                loadedCount = loadedCount + 1;
+                                if (loadedCount === mealIds.length) {
+                                    saveMeals();
+                                    renderMeals(allMeals)
+                                }
+                            })
+                    }
+                })
+        }
+        toggleButton.addEventListener("click", function () {
+            if (showAllMeals) {
+                showAllMeals = false;
+                toggleButton.textContent = "See all food"
+            } else {
+                showAllMeals = true;
+                toggleButton.textContent = "See less food"
+            }
+            renderMeals(allMeals)
+        });
+        loadInitialMeals()
+    </script>
+</body>
+
+</html>
