@@ -41,7 +41,9 @@ $datas = [
     [
         "matric_no" => "CMP2307629",
         "name" => "Mgbeken Justice",
-        "department" => "Software Engineering",    
+        "department" => "Software Engineering",
+         "username" => "Shiho",
+        "password" => "shiho123",      
     ],
 
     [
@@ -53,7 +55,9 @@ $datas = [
  [
         "matric_no" => "CMP2307604",
         "name" => "Otiti Chigoziem",
-     [
+        "department" => "Software Engineering",    
+    ],
+    [
         "matric_no" => "CMP2307462",
         "name" => "Uwaje Peter Onyekachukwu",
         "department" => "Computer Science",    
