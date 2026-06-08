@@ -45,15 +45,10 @@ $types = [
       <p>Welcome back, <br>Sign into your account</p>
       <a href="/"><img src="/images/logo-dark.png" alt=""></a>
     </div>
+    <form action="profile.php" method="POST" class="mt-5">
+      <input type="text" name="username" placeholder="Enter Username" required class="p-2">
+      <input type="password" name="password" placeholder="Password" required class="p-2">
 
-    <form action="php/login.php" method="POST" class="mt-5">
-      <input name="username" type="text" placeholder="Enter Full Name" required class="p-2">
-      <input name="password" type="password" placeholder="Password" required class="p-2">
-      <select name="" id="" class="form-control">
-        <?php foreach ($types as $type): ?>
-          <option value="<?php echo $type; ?>"><?php echo $type ?></option>
-        <?php endforeach; ?>
-      </select>
       <button type="submit" class="submit-btn p-2 mt-3">Login</button>
 
     </form>
