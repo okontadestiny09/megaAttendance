@@ -1,0 +1,1 @@
+SELECT name, LifeExpectancy FROM Country ORDER BY LifeExpectancy DESC LIMIT 10;
