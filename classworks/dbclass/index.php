@@ -17,11 +17,14 @@ $languages = fetchAllLanguages($con)
         <tr>
             <th>Country</th>
             <th>Continent</th>
+            <th>Population</th>
         </tr>
         <?php while($row = mysqli_fetch_assoc($countries)): ?>
             <tr>
             <td><?= $row['Name'] ?></td>
             <td><?= $row['Continent'] ?></td>
+            <td><?= number_format($row['Population']) ?></td>
+            <td><a href="edit.php?code=<?= $row['Code']; ?>">EDIT</a></td>
         </tr>
         <?php endwhile ?>
     </table>
