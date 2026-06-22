@@ -21,16 +21,14 @@ if ($code) {
 <body>
     <?php while($row = mysqli_fetch_assoc($results)):?>
         <h1>Edit <?= $row['Name']; ?></h1>
-        <form action="" method="post">
+        <form action="update.php?code=<?=$row['Code']; ?>" method="post">
             <label for="">Name:</label>
-            <input type="text" value="<?= $row['Name']; ?>"> 
+            <input type="text" name="country" value="<?= $row['Name']; ?>"> 
             <br>
             <label for="">Population:</label>
-            <input type="text" value="<?= $row['Population']; ?>"> 
+            <input type="text" name="population" value="<?= $row['Population']; ?>"> 
             <br>
-            <label for="">Code:</label>
-            <input type="text" value="<?= $row['Code']; ?>"> 
-            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     <?php endwhile?>
 </body>
