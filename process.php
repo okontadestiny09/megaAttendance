@@ -1,6 +1,5 @@
 <?php
 session_start();
-<<<<<<< HEAD
 include ("classworks\dbclass\connection.php");
 
 if (isset($_SESSION ['authenticated']) && $_SESSION['authenticated'] == true) {
@@ -9,13 +8,11 @@ if (isset($_SESSION ['authenticated']) && $_SESSION['authenticated'] == true) {
 } 
 
 
-=======
 include("classworks/dbclass/connection.php");
 if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] == true) {
     header("location:profile.php");
     return;
 }
->>>>>>> 428b91999bafc9deeedcc25eaae0d87e6df6d360
 if (isset($_POST['name']) && !empty($_POST['name'])) {
     $name = $_POST['name'];
     $_SESSION['user_name'] = $name;
@@ -37,20 +34,6 @@ if (isset($_POST['name']) && !empty($_POST['name'])) {
                        return;
                     }
                     $hash_password = password_hash($password, PASSWORD_DEFAULT);
-<<<<<<< HEAD
-                    // name,email,password
-                    $query = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
-                    $prepared = mysqli_prepare($con, $query);
-                    if ($prepared) {
-                        mysqli_stmt_bind_param($prepared, "sss", $name, $email, $hash_password);
-                        if (mysqli_stmt_execute($prepared)) {
-                           $_SESSION['name'] = $name;
-                           $_SESSION['email'] = $email;
-                           $_SESSION['authenticated'] = true;
-                           header("location:profile.php");
-                           } else {
-                            echo "Unable to register user";
-=======
                     $query = "INSERT INTO users (name,email,password) VALUES (?, ?, ?)";
                     $prepared = mysqli_prepare($con, $query);
                     if ($prepared) {
@@ -62,7 +45,6 @@ if (isset($_POST['name']) && !empty($_POST['name'])) {
                             header("Location:profile.php");
                         } else {
                             echo "Unable to register account";
->>>>>>> 428b91999bafc9deeedcc25eaae0d87e6df6d360
                         }
                         
                     } else {
