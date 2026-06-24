@@ -1,5 +1,12 @@
 <?php
 session_start();
+include ("classworks\dbclass\connection.php");
+
+if (isset($_SESSION ['authenticated']) && $_SESSION['authenticated'] == true) {
+    header("location:profile.php");
+    return;
+} 
+
 
 if (isset($_POST['name']) && !empty($_POST['name'])) {
     $name = $_POST['name'];
@@ -11,9 +18,24 @@ if (isset($_POST['name']) && !empty($_POST['name'])) {
                 $password = $_POST['password'];
                 if (strlen($password) > 6) {
                     $hash_password = password_hash($password, PASSWORD_DEFAULT);
-                    echo $hash_password;
                     // name,email,password
-                    $query = "INSERT INTO ";
+                    $query = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
+                    $prepared = mysqli_prepare($con, $query);
+                    if ($prepared) {
+                        mysqli_stmt_bind_param($prepared, "sss", $name, $email, $hash_password);
+                        if (mysqli_stmt_execute($prepared)) {
+                           $_SESSION['name'] = $name;
+                           $_SESSION['email'] = $email;
+                           $_SESSION['authenticated'] = true;
+                           header("location:profile.php");
+                           } else {
+                            echo "Unable to register user";
+                        }
+                        
+                    } else {
+                        # code...
+                    }
+                    
                 } else {
                     $_SESSION['password_error'] = "Password must be more than 6 characters";
                     header("location:register.php");
