@@ -3,6 +3,15 @@
 trait AssignmentOperations
 {
 
+   protected function isExpired(string $dueDate)
+    {
+        return strtotime($dueDate) < time();
+    }
+
+    protected function formatDueDate(string $dueDate)
+    {
+        return date("d M Y", strtotime($dueDate));
+    }
     public function createAssignment(string $title, string $description, string $dueDate)
     {
         if ($this->isExpired($dueDate)) {
@@ -23,13 +32,4 @@ trait AssignmentOperations
         return "Assignment $id deleted successfully.";
     }
 
-    protected function isExpired(string $dueDate)
-    {
-        return strtotime($dueDate) < time();
-    }
-
-    protected function formatDueDate(string $dueDate)
-    {
-        return date("d M Y", strtotime($dueDate));
-    }
 }
