@@ -3,11 +3,12 @@
 class Animal{
     public string $chain;
 
-    // function __construct($chain){
-    // $this->chain = $chain;
-    // }
-// private, protected public
-    private function mate(){
+    function __construct(string $passed)
+    {
+        $this->chain = $passed;
+    }
+
+    public function mate(){
         echo "Mating without chains";
     }
 
@@ -20,8 +21,7 @@ class Animal{
     }
 }
 
-// $a = new Animal(2);
-// constructor
-// instantiation, instance of a class
+$goat = new Animal("Jack Bauer"); // Instantiate
+echo $goat->chain; // trigger a class member
 
-// $a->mate();
+// actions are methods, properties are attributes/variables
