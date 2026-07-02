@@ -1,0 +1,59 @@
+@import url('/css/config.css');
+
+#preloader {
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: hidePreloader 0.5s forwards 4s;
+    top: 0;
+    left: 0;
+}
+
+.loader-ring {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 5px solid transparent;
+    border-top: 5px solid var(--primary-color);
+    border-bottom: 5px solid var(--secondary-color);
+    animation: spinRing 1s linear infinite;
+}
+
+.logo-box {
+    background-color: #121212;
+    border-radius: 50%;
+    padding: 15px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.logo-box img {
+    width: 100%;
+}
+
+@keyframes spinRing {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes hidePreloader {
+    to {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+}

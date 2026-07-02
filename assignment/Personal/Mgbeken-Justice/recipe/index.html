@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../../../fontawesome/css/all.min.css">
+    <title>Recipe Categories</title>
+</head>
+<body>
+    <div class="main">
+        <div class="card">
+            <div class="content">
+
+                <div class="heading">
+                    <h1>Recipe Categories</h1>
+                    <p>Discover a variety of favorite recipes<br>and enjoy the enticing flavors in every dish!</p>
+                </div>
+
+                <div class="categories">
+                </div>
+
+                <div class="popular-header">
+                    <div class="heading">
+                        <h1>Popular Recipes</h1>
+                        <p>Tired of the same old meals? Explore our collection of popular recipes<br>and discover new dishes that will tantalize your taste buds.</p>
+                    </div>
+                    <a href="#" class="see-all">See all</a>
+                </div>
+
+                <div class="recipes">
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        const API = 'https://www.themealdb.com/api/json/v1/1';
+
+        async function loadData() {
+        // categories
+        const cats = await fetch(`${API}/categories.php`).then(r => r.json());
+        const catsContainer = document.querySelector('.categories');
+        catsContainer.innerHTML = '';
+        
+        cats.categories.slice(0, 6).forEach(c => {
+            const catDiv = document.createElement('div');
+            catDiv.className = 'category';
+            catDiv.innerHTML = `
+            <img src="${c.strCategoryThumb}" alt="${c.strCategory}">
+            <p>${c.strCategory}</p>
+            `;
+            catsContainer.appendChild(catDiv);
+        });
+
+        // recipes
+        const meals = await fetch(`${API}/filter.php?c=Seafood`).then(r => r.json());
+        const recipesContainer = document.querySelector('.recipes');
+        recipesContainer.innerHTML = '';
+        
+        await Promise.all(
+            meals.meals.slice(0, 12).map(async m => {
+            const detail = await fetch(`${API}/lookup.php?i=${m.idMeal}`).then(r => r.json());
+            const meal = detail.meals[0];
+            const card = document.createElement('div');
+            card.className = 'recipe-card';
+            card.innerHTML = `
+                <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+                <p class="recipe-name">${meal.strMeal} <i class="far fa-bookmark bookmark-icon"></i></p>
+                <p class="recipe-author">By ${meal.strArea}</p>
+                <p class="recipe-rating">⭐⭐⭐⭐ 4.5</p>
+            `;
+            recipesContainer.appendChild(card);
+            })
+        );
+        }
+
+        loadData();
+    </script>
+</body>
+</html>

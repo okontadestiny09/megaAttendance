@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="triangle.css">
+</head>
+<body class="d-flex flex-column align-items-center justify-content-center vh-100">
+  <div class="triangle-wrap my-4">
+    <div class="side-left"></div>
+    <div class="side-bottom"></div>
+
+   
+    <svg style="position:absolute;left:80px;top:20px;" width="201" height="201">
+      <line x1="0" y1="0" x2="200" y2="200" stroke="black" stroke-width="3"/>
+    </svg>
+
+    <div class="label-left">
+      <small>Opposite</small><br>
+      <input class="form-control form-control-sm" style="width:65px" id="b">
+    </div>
+    <div class="label-bottom">
+      <small>Adjacent</small><br>
+      <input class="form-control form-control-sm" style="width:65px" id="a">
+    </div>
+    <div class="label-hyp">
+      <small>Hyp</small><br>
+      <input class="form-control form-control-sm" style="width:65px" id="c">
+    </div>
+  </div>
+
+  <button class="btn btn-primary mt-4" id="solveBtn">Solve</button>
+
+  <p id="r" class="mt-3 fw-bold fs-5"></p>
+
+  <script src="bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById('solveBtn').addEventListener('click', function() {
+      let a = document.getElementById('a').value;
+      let b = document.getElementById('b').value;
+      let c = document.getElementById('c').value;
+      a = a ? +a : null;
+      b = b ? +b : null;
+      c = c ? +c : null;
+      if(a === null) document.getElementById('r').innerText = 'Adjacent = ' + Math.sqrt(c*c - b*b).toFixed(0);
+      else if(b === null) document.getElementById('r').innerText = 'Opposite = ' + Math.sqrt(c*c - a*a).toFixed(0);
+      else document.getElementById('r').innerText = 'Hypotenuse = ' + Math.sqrt(a*a + b*b).toFixed(0);
+    });
+  </script>
+</body>
+</html>

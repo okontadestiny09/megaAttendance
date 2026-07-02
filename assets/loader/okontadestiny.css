@@ -1,0 +1,43 @@
+@import url("/css/config.css");
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.loader-container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    animation: invisible 0.5s ease 3s forwards;
+}
+
+.loader {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 6px solid var(--primary-color);
+    border-top: 6px solid var(--secondary-color);
+    animation: loading 0.79s linear infinite;
+
+}
+
+@keyframes loading {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes invisible {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}

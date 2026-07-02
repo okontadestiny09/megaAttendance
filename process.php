@@ -1,5 +1,13 @@
 <?php
 session_start();
+include ("classworks\dbclass\connection.php");
+
+if (isset($_SESSION ['authenticated']) && $_SESSION['authenticated'] == true) {
+    header("location:profile.php");
+    return;
+} 
+
+
 include("classworks/dbclass/connection.php");
 if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] == true) {
     header("location:profile.php");
