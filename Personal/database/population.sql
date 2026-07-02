@@ -1,1 +1,0 @@
-SELECT name, population FROM Country ORDER BY population DESC LIMIT 10;
