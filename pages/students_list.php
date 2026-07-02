@@ -1,5 +1,5 @@
 <?php 
-  include 'php/students_data.php'; 
+  include '../php/students_data.php'; 
 ?>
 
 
@@ -10,9 +10,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SIWES Attendance - Student List</title>
-  <link rel="stylesheet" href="/bootstrap/bootstrap.css">
-  <link rel="stylesheet" href="/css/students_list.css" />
-  <link rel="stylesheet" href="/fontawesome/css/all.css">
+  <link rel="stylesheet" href="../assets/bootstrap/bootstrap.css">
+  <link rel="stylesheet" href="../assets/css/students_list.css" />
+  <link rel="stylesheet" href="../assets/fontawesome/css/all.css">
 </head>
 
 <body>
@@ -120,33 +120,32 @@
 
 
 
-    <div class="footer-d">
-      <div><img src="./images/logo-dark.png" class="img-f" /></div>
+   <footer class="bg-purple text-white py-4">
+        <div class="container-fluid">
+            <div class="row text-center text-md-start align-items-center">
 
-      <div class="footer-last">
-        <div class="footer-d1">
-          <a href="index.html">Home</a>
-          <a href="students_list.html">Students-List</a>
-          <a href="profile.html">Profile</a>
-          <a href="edit_profile.html">Edit Profile</a>
-          <a href="about.html">About</a>
+                <div class="col-12 col-md-4 mb-3 mb-md-0 ps-5">
+                    <img src="../assets/images/logo-dark.png" class="img-fluid footer-logo" alt="Logo">
+                </div>
+
+                <div class="col-12 col-md-4 mb-1 mb-md-0 text-center">
+                    <p class="mb-0">
+                        &copy; MegaAttendance Copyright 2026. <br>
+                        All Rights Reserved
+                    </p>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-4 text-center text-md-end">
+                    <div class="d-inline-block text-center">
+                        <p class="mb-0">Contact us</p>
+                        <p class="mb-0">+234 812 435 3021</p>
+                    </div>
+                </div>
+
+            </div>
         </div>
+    </footer>
 
-        <div class="footer-d2">
-          <p>© <span>MegaAttendance</span>Copyright 2026. All Rights Reserved.</p>
-        </div>
-      </div>
-
-      <div class="footer-space">
-        <p>Contact us</p>
-        <p>Phone: 08124353021</p>
-      </div>
-
-      <div class="auth-buttons">
-        <a href="login.html" class="login"><i class="fa fa-user-circle" aria-hidden="true"></i> Login</a>
-        <a href="register.html" class="register"><i class="fa fa-user-plus" aria-hidden="true"></i> Register</a>
-      </div>
-    </div>
   </div>
 
   <script src="/bootstrap/js/bootstrap.bundle.js"></script>
