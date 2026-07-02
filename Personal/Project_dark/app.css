@@ -1,31 +1,6 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:           #FAF9F6;
-  --bg-2:         #FFFFFF;
-  --bg-3:         #F5F3ED;
-  --bg-4:         #EBE8DF;
-  --text:         #1A1A18;
-  --text-muted:   #52524f;
-  --text-dim:     #9A9690;
-  --accent:       #D48806;
-  --accent-soft:  rgba(212, 136, 6, 0.08);
-  --accent-mid:   rgba(212, 136, 6, 0.15);
-  --border:       #EBE8DF;
-  --border-2:     #DFDCD3;
-  --green:        #2C7A4B;
-  --green-soft:   rgba(44, 122, 75, 0.08);
-  --red:          #A53D2A;
-  --red-soft:     rgba(165, 61, 42, 0.08);
-  --rust:         #8B4513;
-  --sidebar-w:    240px;
-  --topbar-h:     58px;
-  --font-head:    'Bitter', Georgia, serif;
-  --font-body:    'IBM Plex Sans', sans-serif;
-  --font-mono:    'IBM Plex Mono', monospace;
-}
-
-[data-theme="dark"] {
   --bg:           #111110;
   --bg-2:         #181817;
   --bg-3:         #202020;
@@ -43,6 +18,11 @@
   --red:          #c0523a;
   --red-soft:     rgba(192,82,58,0.12);
   --rust:         #a84e28;
+  --sidebar-w:    240px;
+  --topbar-h:     58px;
+  --font-head:    'Bitter', Georgia, serif;
+  --font-body:    'IBM Plex Sans', sans-serif;
+  --font-mono:    'IBM Plex Mono', monospace;
 }
 
 html, body { height: 100%; font-size: 15px; }
@@ -69,13 +49,6 @@ body {
   height: 100vh;
   overflow: hidden;
 }
-
-.sidebar nav {
-  flex: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-.sidebar nav::-webkit-scrollbar { width: 0; }
 
 .sidebar-brand {
   padding: 1.4rem 1.5rem 1.2rem;
@@ -106,31 +79,28 @@ body {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--text-dim);
-  padding: 1rem 1.2rem 0.4rem;
+  padding: 1.2rem 1.5rem 0.5rem;
 }
 
 .sidebar-nav {
   list-style: none;
-  padding: 0;
-  margin: 0;
   flex: 1;
   overflow-y: auto;
+  padding-bottom: 1rem;
 }
 .sidebar-nav::-webkit-scrollbar { width: 0; }
 
 .nav-item a {
   display: flex;
   align-items: center;
-  gap: 1.2rem;
-  padding: 0.6rem 1.2rem;
+  gap: 0.75rem;
+  padding: 0.58rem 1.5rem;
   color: var(--text-muted);
   text-decoration: none;
   font-size: 0.83rem;
   font-weight: 300;
   transition: color 0.15s, background 0.15s;
   position: relative;
-  white-space: nowrap;
-  overflow: hidden;
 }
 .nav-item a:hover {
   color: var(--text);
@@ -152,10 +122,10 @@ body {
 
 .nav-icon {
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: inherit;
-  width: 16px;
-  text-align: left;
+  width: 18px;
+  text-align: center;
   flex-shrink: 0;
 }
 
@@ -174,39 +144,10 @@ body {
   color: var(--accent);
 }
 
-/* ── SUB-NAV DROPDOWN ── */
-.nav-sub {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.25s ease;
-}
-.nav-sub.open {
-  max-height: 200px;
-}
-.nav-sub .nav-item a {
-  padding-left: 1.2rem;
-  font-size: 0.8rem;
-  white-space: nowrap;
-  overflow: hidden;
-}
-.nav-chevron {
-  font-size: 0.6rem;
-  margin-left: 0.4rem;
-  transition: transform 0.25s ease;
-  flex-shrink: 0;
-}
-.nav-chevron.open {
-  transform: rotate(180deg);
-}
-
 .sidebar-footer {
   border-top: 1px solid var(--border);
   padding: 1rem 1.5rem;
   flex-shrink: 0;
-  margin-top: auto;
 }
 .user-row {
   display: flex;
@@ -216,7 +157,6 @@ body {
 .user-avatar {
   width: 30px;
   height: 30px;
-  border-radius: 50%;
   background: var(--accent-mid);
   border: 1px solid var(--accent);
   display: flex;

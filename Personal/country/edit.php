@@ -1,6 +1,7 @@
 <?php
 include "connection.php";
 include "model.php";
+global $con;
 
 if ($_POST) {
     updateCountry($con, $_GET['country'], $_POST['newName']);

@@ -1,6 +1,7 @@
 <?php
 include "connection.php";
 include "model.php";
+global $con;
 
 $allcountries = fetchAllCountries($con);
 ?>

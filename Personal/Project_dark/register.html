@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register — StockWarden</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="nav">
+    <a href="index.html" class="nav-brand">
+      <span class="brand-name">StockWarden</span>
+      <span class="brand-tag">Inventory System</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="login.html" class="btn btn-ghost">Log in</a>
+      <a href="register.html" class="btn btn-primary">Register</a>
+    </div>
+  </nav>
+
+  <!-- AUTH WRAPPER -->
+  <div class="auth-wrapper">
+
+    <!-- LEFT PANEL -->
+    <div class="auth-panel-left">
+      <div>
+        <p style="font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent);">StockWarden</p>
+      </div>
+
+      <div>
+        <div class="auth-quote">
+          "An organization's ability to learn, and translate that learning into action rapidly, is the ultimate competitive advantage."
+          <cite>— Jack Welch</cite>
+        </div>
+      </div>
+
+      <div>
+        <p style="font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 1rem;">What you get</p>
+        <ul class="auth-bullets">
+          <li>Unlimited product entries during beta</li>
+          <li>Multi-location inventory tracking</li>
+          <li>Supplier management &amp; reorder tools</li>
+          <li>Stock movement audit trail</li>
+          <li>CSV &amp; PDF export at any time</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- RIGHT: FORM PANEL -->
+    <div class="auth-form-panel">
+      <div class="auth-form-header">
+        <div class="step-tag">New account</div>
+        <h2>Create your<br />StockWarden account</h2>
+        <p>Free to start. No credit card required.</p>
+      </div>
+
+      <form action="#" method="post">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="first-name">First name</label>
+            <input type="text" id="first-name" name="first_name" placeholder="Ada" autocomplete="given-name" />
+          </div>
+          <div class="form-group">
+            <label for="last-name">Last name</label>
+            <input type="text" id="last-name" name="last_name" placeholder="Lovelace" autocomplete="family-name" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" />
+          <span class="form-hint">Used for login. We don't send marketing emails.</span>
+        </div>
+
+        <div class="form-group">
+          <label for="org">Organisation / Business name <span style="color: var(--text-dim);">(optional)</span></label>
+          <input type="text" id="org" name="organisation" placeholder="e.g. My Warehouse Ltd." />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Min. 8 characters" autocomplete="new-password" />
+          <span class="form-hint">Use a mix of letters, numbers, and symbols.</span>
+        </div>
+
+        <div class="form-group">
+          <label for="confirm-password">Confirm password</label>
+          <input type="password" id="confirm-password" name="confirm_password" placeholder="Repeat your password" autocomplete="new-password" />
+        </div>
+
+        <div class="checkbox-row" style="margin-top: 0.5rem;">
+          <input type="checkbox" id="terms" name="terms" required />
+          <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+        </div>
+
+        <button type="submit" class="btn btn-solid" style="width: 100%; justify-content: center; padding: 0.85rem; margin-bottom: 1.2rem;">Create account &rarr;</button>
+
+        <div class="form-divider">already have an account?</div>
+
+        <p class="form-footer-text">
+          <a href="login.html">Log in instead &rarr;</a>
+        </p>
+      </form>
+
+      <div style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);">
+        <p style="font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em; color: var(--text-dim); text-align: center;">
+          This is a personal project. Registration is currently non-functional.<br />
+          Backend integration coming in Phase 3.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

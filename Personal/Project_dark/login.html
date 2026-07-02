@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Log in — StockWarden</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="nav">
+    <a href="index.html" class="nav-brand">
+      <span class="brand-name">StockWarden</span>
+      <span class="brand-tag">Inventory System</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="login.html" class="btn btn-primary" style="border-color: var(--accent); color: var(--accent);">Log in</a>
+      <a href="register.html" class="btn btn-ghost">Register</a>
+    </div>
+  </nav>
+
+  <!-- AUTH WRAPPER -->
+  <div class="auth-wrapper">
+
+    <!-- LEFT PANEL -->
+    <div class="auth-panel-left">
+      <div>
+        <p style="font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent);">StockWarden</p>
+      </div>
+
+      <div>
+        <div class="auth-quote">
+          "The factory of the future will have only two employees: a man and a dog. The man will be there to feed the dog. The dog will be there to keep the man from touching the equipment."
+          <cite>— Warren Bennis</cite>
+        </div>
+      </div>
+
+      <ul class="auth-bullets">
+        <li>Track unlimited SKUs across multiple locations</li>
+        <li>Real-time stock movement logging</li>
+        <li>Low stock threshold alerts</li>
+        <li>Full data export anytime</li>
+      </ul>
+    </div>
+
+    <!-- RIGHT: FORM PANEL -->
+    <div class="auth-form-panel">
+      <div class="auth-form-header">
+        <div class="step-tag">Welcome back</div>
+        <h2>Log in to<br />StockWarden</h2>
+        <p>Enter your credentials to access your inventory.</p>
+      </div>
+
+      <form action="#" method="post">
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" autocomplete="current-password" />
+          <span class="form-hint"><a href="#" style="color: var(--accent); font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-decoration: none;">Forgot password?</a></span>
+        </div>
+
+        <div class="checkbox-row">
+          <input type="checkbox" id="remember" name="remember" />
+          <label for="remember">Keep me logged in for 30 days</label>
+        </div>
+
+        <button type="submit" class="btn btn-solid" style="width: 100%; justify-content: center; padding: 0.85rem; margin-bottom: 1.2rem;">Log in &rarr;</button>
+
+        <div class="form-divider">or</div>
+
+        <p class="form-footer-text">
+          Don't have an account? <a href="register.html">Create one &rarr;</a>
+        </p>
+      </form>
+
+      <div style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);">
+        <p style="font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em; color: var(--text-dim); text-align: center;">
+          This is a personal project. Authentication is currently non-functional.<br />
+          Backend integration coming in Phase 3.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
