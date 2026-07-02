@@ -2,20 +2,24 @@
 
 class Database
 {
-    protected string $con = "Our connection string";
+    protected mysqli $connection;
+
     function __construct()
     {
         $this->connect();
     }
-    function connect(){
-        echo "Connecting to database...<br>";
-        // $connection = new mysqli('localhost', 'root', 'protected', 'world');
 
-        // if ($connection->connect_error) {
-        //     die("Connection failed ". $connection->connect_error);
-        // }else{
-        //     $this->con = $connection;
-        // }
-        // return $connection;
+    function connect(){
+        $connection = new mysqli('localhost', 'root', '', 'july-1');
+
+        if ($connection->connect_error) {
+            die("Connection failed ". $connection->connect_error);
+        }else{
+            echo "connected";
+        }
+        return $this->connection = $connection;
     }
 }
+
+
+?>
